@@ -6,7 +6,7 @@ android {
     defaultConfig {
         applicationId "com.nonda.dtc"
         minSdkVersion 21
-        targetSdkVersion 25
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -17,6 +17,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+}
+
+repositories {
+    mavenCentral()
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
 }
 
 ext.supportLibVersion = '25.0.1'
@@ -30,5 +35,8 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.jakewharton:butterknife:8.6.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
+    compile 'com.github.captain-miao:ble:1.1.0-SNAPSHOT'
     testCompile 'junit:junit:4.12'
+    compile 'com.orhanobut:logger:1.15'
+    compile 'com.afollestad.material-dialogs:commons:0.9.4.5'
 }

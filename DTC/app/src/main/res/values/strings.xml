@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">DTC</string>
+
+    <string name="ble_unknown">unknown</string>
+    <string name="app_ble_status_0">BLE Initialed</string>
+    <string name="app_ble_status_1">BLE Scanning</string>
+    <string name="app_ble_status_2">BLE Connecting</string>
+    <string name="app_ble_status_3">BLE Connected</string>
+    <string name="app_ble_status_4">BLE Services Discovering</string>
+    <string name="app_ble_status_5">BLE Services Discovered</string>
+    <string name="app_ble_status_6">BLE Disconnecting</string>
+    <string name="app_ble_status_7">BLE Disconnected</string>
+    <string name="app_ble_status_8">Bluetooth_off</string>
+    <string name="app_ble_status_9">BLE Services Discover Failed</string>
+    <string name="ble_scanning">Scanning</string>
+    <string name="ble_find">Find device</string>
+    <string name="connect_success">Connect success</string>
+    <string name="connect_failed">Connect failed</string>
+    <string name="connecting">Connecting</string>
 </resources>
