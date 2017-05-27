@@ -39,4 +39,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.orhanobut:logger:1.15'
     compile 'com.afollestad.material-dialogs:commons:0.9.4.5'
+    compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'com.github.captain-miao:grantap:1.0.0-SNAPSHOT@aar'
 }
