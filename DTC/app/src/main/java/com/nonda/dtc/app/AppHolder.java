@@ -19,6 +19,8 @@ import com.orhanobut.logger.Logger;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,6 +32,9 @@ public class AppHolder extends Application {
     private static final String TAG = "AppHolder";
 
     private static AppHolder _instance;
+
+    private BluetoothGattService mBleService;
+    private BluetoothGattCharacteristic mBleChara;
 
 
     public static AppHolder getInstance() {
@@ -95,10 +100,18 @@ public class AppHolder extends Application {
 
         @Override
         public void onCharacteristicNotification(UUID uuid, byte[] data) {
-            String values = new String(data);
+            String values = null;
+            try {
+                values = new String(data, "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            if (values.indexOf("#ATDTC") > 0) {
+                Logger.t(TAG).d("ATDTC: " + values);
+            }
             if (values.startsWith("BD$")) {
                 String notification = mNotificationBuilder.toString();
-                Logger.t(TAG).i("onCharacteristicNotification: " + notification);
+//                Logger.t(TAG).i("onCharacteristicNotification: " + notification);
                 ObdData obdData = ObdData.fromString(notification);
                 if (obdData != null) {
                     mEventBus.post(obdData);
@@ -132,12 +145,16 @@ public class AppHolder extends Application {
                 Logger.t(TAG).i("Discovered success");
                 List<BluetoothGattService> serviceList = gatt.getServices();
                 for (BluetoothGattService service : serviceList) {
-                    Logger.t(TAG).d("service: " + service.getUuid());
+//                    Logger.t(TAG).d("service: " + service.getUuid());
                     List<BluetoothGattCharacteristic> gattCharacteristics = service.getCharacteristics();
                     for (BluetoothGattCharacteristic characteristic : gattCharacteristics) {
-                        Logger.t(TAG).d("charater: " + characteristic.getUuid());
+//                        Logger.t(TAG).d("charater: " + characteristic.getUuid());
                         if (characteristic.getUuid().toString().startsWith("00002b11")) {
                             mBleHelper.readFromCharacteristic(service.getUuid(), characteristic.getUuid());
+                            mBleService = service;
+                            mBleChara = characteristic;
+//                            String atdtc = getUTF8XMLString("ATFCDTC");
+//                            mBleHelper.writeCharacteristic(service.getUuid(), characteristic.getUuid(), atdtc.getBytes());
                         }
                     }
                 }
@@ -149,6 +166,29 @@ public class AppHolder extends Application {
 
     public BleCallback getBleCallBack() {
         return mBleCallback;
+    }
+
+    public void writeCmd(String cmd) {
+        String atdtc = getUTF8XMLString(cmd);
+        mBleHelper.writeCharacteristic(mBleService.getUuid(), mBleChara.getUuid(), atdtc.getBytes());
+    }
+
+    public static String getUTF8XMLString(String xml) {
+        // A StringBuffer Object
+        StringBuffer sb = new StringBuffer();
+        sb.append(xml);
+        String xmString = "";
+        String xmlUTF8="";
+        try {
+            xmString = new String(sb.toString().getBytes("UTF-8"));
+            xmlUTF8 = URLEncoder.encode(xmString, "UTF-8");
+            System.out.println("utf-8 编码：" + xmlUTF8) ;
+        } catch (UnsupportedEncodingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        // return to String Formed
+        return xmlUTF8;
     }
 
 

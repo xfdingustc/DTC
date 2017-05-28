@@ -13,6 +13,7 @@ public class ObdData {
     public int coolant = -1;
     public float flueLevel = -1.0f;
     public float instantMpg = -1.0f;
+    public int error = 0;
 
     public static ObdData fromString(String obd) {
         if (!obd.startsWith("BD$")) {
@@ -39,6 +40,8 @@ public class ObdData {
 
             } else if (onePayLoad.startsWith("XM")) {
                 obdData.instantMpg = Float.valueOf(onePayLoad.substring(2));
+            } else if (onePayLoad.startsWith("D")) {
+//                obdData.error = Integer.valueOf(onePayLoad.substring(1));
             }
         }
 

@@ -144,9 +144,11 @@ public class MainActivity extends AppCompatActivity implements PermissionListene
                 viewPager.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        mBleScanDialog.dismiss();
+
+//                        mBleScanDialog.dismiss();
                     }
                 }, 2000);
+
             }
 
             @Override

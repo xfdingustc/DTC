@@ -20,6 +20,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".FaultActivity"/>
+
         <service android:name="com.nonda.dtc.ble.AppBleService"/>
     </application>
 
