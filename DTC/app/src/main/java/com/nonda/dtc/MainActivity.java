@@ -37,6 +37,7 @@ import com.nonda.dtc.blelib.utils.BleUtils;
 import com.nonda.dtc.blelib.utils.HexUtil;
 import com.nonda.dtc.model.BleDevice;
 import com.nonda.dtc.model.ObdData;
+import com.nonda.dtc.views.InkPageIndicator;
 import com.orhanobut.logger.Logger;
 
 import org.greenrobot.eventbus.EventBus;
@@ -62,6 +63,9 @@ public class MainActivity extends AppCompatActivity implements PermissionListene
 
     @BindView(R.id.view_pager)
     ViewPager viewPager;
+
+    @BindView(R.id.indicator)
+    InkPageIndicator inkPageIndicator;
 
 
     @Override
@@ -128,6 +132,7 @@ public class MainActivity extends AppCompatActivity implements PermissionListene
         mAdapter.addFragment(new DeviceFragment());
         mAdapter.addFragment(new BasicFragment());
         viewPager.setAdapter(mAdapter);
+        inkPageIndicator.setViewPager(viewPager);
     }
 
 
