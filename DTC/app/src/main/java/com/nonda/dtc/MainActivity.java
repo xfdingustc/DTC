@@ -22,6 +22,7 @@ import com.afollestad.materialdialogs.Theme;
 import com.example.captain_miao.grantap.ListenerPermission;
 import com.example.captain_miao.grantap.listeners.PermissionListener;
 
+import com.nonda.dtc.app.AppHolder;
 import com.nonda.dtc.app.AppLog;
 import com.nonda.dtc.ble.AppBluetoothHelper;
 import com.nonda.dtc.blelib.BleCallback;
@@ -51,14 +52,13 @@ public class MainActivity extends AppCompatActivity implements PermissionListene
     private static final int REQUEST_CODE_OPEN_BLE = 1;
     private static final int REQUEST_CODE_OPEN_GPS = 2;
     private SimpleFragmentPagerAdapter mAdapter;
-    private AppBluetoothHelper mBleHelper;
+
     private BleScanner mBleScanner;
     private BleDevice mBleDevice;
 
     private MaterialDialog mBleScanDialog;
 
-    private StringBuilder mNotificationBuilder = new StringBuilder();
-    private EventBus mEventBus = EventBus.getDefault();
+
 
     @BindView(R.id.view_pager)
     ViewPager viewPager;
@@ -91,15 +91,15 @@ public class MainActivity extends AppCompatActivity implements PermissionListene
                     mBleDevice = new BleDevice(address, device.getAddress(),
                             rssi, HexUtil.encodeHexStr(scanRecord), false);
 
-                    mBleHelper = new AppBluetoothHelper(MainActivity.this);
-                    mBleHelper.setBleCallback(mBleCallback);
-                    mBleHelper.bindService(new BluetoothHelper.OnBindListener() {
+                    AppHolder.getInstance().initBleHelper(new BluetoothHelper.OnBindListener() {
                         @Override
                         public void onServiceConnected() {
                             Logger.t(TAG).d("on service connect");
                             connectDevice(mBleDevice.address);
                         }
                     });
+
+
                 }
 
             }
@@ -129,88 +129,16 @@ public class MainActivity extends AppCompatActivity implements PermissionListene
         viewPager.setAdapter(mAdapter);
     }
 
-    private BleCallback mBleCallback = new BleCallback() {
-        @Override
-        public void onFailed(String msg) {
-            Logger.t(TAG).i("onFailed " + msg);
-        }
 
-        @Override
-        public void onDescriptorWrite(UUID uuid, int status) {
-            Logger.t(TAG).i("onDescriptorWrite: " + BleUtils.getGattStatus(status));
-
-        }
-
-        @Override
-        public void onCharacteristicRead(UUID uuid, byte[] data) {
-            String values = new String(data);
-
-            Logger.t(TAG).i("onCharacteristicRead: " + values);
-
-        }
-
-        @Override
-        public void onCharacteristicNotification(UUID uuid, byte[] data) {
-            String values = new String(data);
-            if (values.startsWith("BD$")) {
-                String notification = mNotificationBuilder.toString();
-                Logger.t(TAG).i("onCharacteristicNotification: " + notification);
-                ObdData obdData = ObdData.fromString(notification);
-                if (obdData != null) {
-                    mEventBus.post(obdData);
-                }
-                mNotificationBuilder = new StringBuilder(values);
-            } else {
-                mNotificationBuilder.append(values);
-            }
-
-
-        }
-
-        @Override
-        public void onCharacteristicWrite(UUID uuid, int status) {
-            Logger.t(TAG).i("onCharacteristicWrite: " + BleUtils.getGattStatus(status));
-
-        }
-
-        @Override
-        public void onConnectionStateChange(int status, int newStatus) {
-            BleConnectState connectState = BleConnectState.getBleConnectState(newStatus);
-            Logger.t(TAG).i("connect status changed " + AppBluetoothHelper.getConnectStateForShow(MainActivity.this, connectState.getCode()));
-
-        }
-
-        @Override
-        public void onServicesDiscovered(BluetoothGatt gatt, int status) {
-            //服务发现成功
-            if (gatt != null && status == BluetoothGatt.GATT_SUCCESS) {
-                //displayGattServices(gatt.getServices());
-                Logger.t(TAG).i("Discovered success");
-                List<BluetoothGattService> serviceList = gatt.getServices();
-                for (BluetoothGattService service : serviceList) {
-                    Logger.t(TAG).d("service: " + service.getUuid());
-                    List<BluetoothGattCharacteristic> gattCharacteristics = service.getCharacteristics();
-                    for (BluetoothGattCharacteristic characteristic : gattCharacteristics) {
-                        Logger.t(TAG).d("charater: " + characteristic.getUuid());
-                        if (characteristic.getUuid().toString().startsWith("00002b11")) {
-                            mBleHelper.readFromCharacteristic(service.getUuid(), characteristic.getUuid());
-                        }
-                    }
-                }
-            } else {
-                Logger.t(TAG).i("Discovered fail");
-            }
-        }
-    };
 
 
     public void connectDevice(String deviceMac) {
         Logger.t(TAG).d("connect device: " + deviceMac);
         mBleScanDialog.setContent(R.string.connecting);
-        mBleHelper.connectDevice(deviceMac, new ConnectCallback() {
+        AppHolder.getInstance().getBleHelper().connectDevice(deviceMac, new ConnectCallback() {
             @Override
             public void onConnectSuccess() {
-                mBleHelper.mConnCallback = null;
+                AppHolder.getInstance().getBleHelper().mConnCallback = null;
                 Logger.t(TAG).d("connect success");
                 mBleScanDialog.setContent(R.string.connect_success);
                 viewPager.postDelayed(new Runnable() {
