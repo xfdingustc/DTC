@@ -23,6 +23,7 @@
         <activity android:name=".FaultActivity"/>
 
         <service android:name="com.nonda.dtc.ble.AppBleService"/>
+        <activity android:name=".GoodActivity"/>
     </application>
 
 </manifest>
