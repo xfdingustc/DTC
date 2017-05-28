@@ -51,7 +51,9 @@ public class BasicFragment extends BaseFragment {
             instantMpg.setText(String.valueOf(obdData.instantMpg));
             sumMpg += obdData.instantMpg;
             instantCount++;
-            averageMpg.setText(String.valueOf(sumMpg / instantCount));
+            float average = sumMpg / instantCount;
+            averageMpg.setText(String.valueOf(average));
+            range.setText(String.valueOf(50 / average));
 
         }
 
@@ -77,6 +79,9 @@ public class BasicFragment extends BaseFragment {
 
     @BindView(R.id.averageMpg)
     TextView averageMpg;
+
+    @BindView(R.id.range)
+    TextView range;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {

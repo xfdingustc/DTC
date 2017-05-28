@@ -64,6 +64,17 @@
         tools:text="12.1V"/>
 
     <TextView
+        android:id="@+id/range"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|bottom"
+        android:layout_marginBottom="56dp"
+        android:layout_marginRight="90dp"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        tools:text="12.1V"/>
+
+    <TextView
         android:id="@+id/instantMpg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
