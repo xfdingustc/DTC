@@ -41,7 +41,11 @@ public class ObdData {
             } else if (onePayLoad.startsWith("XM")) {
                 obdData.instantMpg = Float.valueOf(onePayLoad.substring(2));
             } else if (onePayLoad.startsWith("D")) {
-//                obdData.error = Integer.valueOf(onePayLoad.substring(1));
+                try {
+                    obdData.error = Integer.valueOf(onePayLoad.substring(1));
+                } catch (NumberFormatException e) {
+                    obdData.error = -1;
+                }
             }
         }
 

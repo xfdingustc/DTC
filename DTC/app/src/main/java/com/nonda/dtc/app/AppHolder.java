@@ -5,6 +5,7 @@ import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattService;
 import android.content.Context;
+import android.util.Log;
 
 
 import com.nonda.dtc.MainActivity;
@@ -14,6 +15,7 @@ import com.nonda.dtc.blelib.BluetoothHelper;
 import com.nonda.dtc.blelib.constant.BleConnectState;
 import com.nonda.dtc.blelib.utils.BleLog;
 import com.nonda.dtc.blelib.utils.BleUtils;
+import com.nonda.dtc.model.DTCError;
 import com.nonda.dtc.model.ObdData;
 import com.orhanobut.logger.Logger;
 
@@ -100,26 +102,11 @@ public class AppHolder extends Application {
 
         @Override
         public void onCharacteristicNotification(UUID uuid, byte[] data) {
-            String values = null;
-            try {
-                values = new String(data, "UTF-8");
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
-            if (values.indexOf("#ATDTC") > 0) {
-                Logger.t(TAG).d("ATDTC: " + values);
-            }
-            if (values.startsWith("BD$")) {
-                String notification = mNotificationBuilder.toString();
-//                Logger.t(TAG).i("onCharacteristicNotification: " + notification);
-                ObdData obdData = ObdData.fromString(notification);
-                if (obdData != null) {
-                    mEventBus.post(obdData);
-                }
-                mNotificationBuilder = new StringBuilder(values);
-            } else {
-                mNotificationBuilder.append(values);
-            }
+
+
+            parse(data);
+
+
 
 
         }
@@ -189,6 +176,46 @@ public class AppHolder extends Application {
         }
         // return to String Formed
         return xmlUTF8;
+    }
+
+    private void parse(byte[] data) {
+        String values = new String(data);
+
+        mNotificationBuilder.append(values);
+//        Log.d(TAG, mNotificationBuilder.toString());
+
+        String notification = mNotificationBuilder.toString();
+        int endOfLine = notification.indexOf("\n");
+        if (endOfLine > 0) {
+            String oneNotification = notification.substring(0, endOfLine);
+            Log.d(TAG, oneNotification);
+            mNotificationBuilder = new StringBuilder(notification.substring(endOfLine + 1));
+            postOneNotification(oneNotification);
+        }
+
+//        if (values.indexOf("DTC") > 0) {
+//            Logger.t(TAG).d("" + values);
+//        }
+//        if (values.startsWith("BD$")) {
+//            String notification = mNotificationBuilder.toString();
+////                Logger.t(TAG).i("onCharacteristicNotification: " + notification);
+//            ObdData obdData = ObdData.fromString(notification);
+//            if (obdData != null) {
+//                mEventBus.post(obdData);
+//            }
+//            mNotificationBuilder = new StringBuilder(values);
+//        } else {
+//            mNotificationBuilder.append(values);
+//        }
+
+    }
+
+    private void postOneNotification(String notification) {
+        if (notification.startsWith("BD$")) {
+            mEventBus.post(ObdData.fromString(notification));
+        } else if (notification.startsWith("#ATDTC$DTC")) {
+            mEventBus.post(DTCError.fromString(notification));
+        }
     }
 
 

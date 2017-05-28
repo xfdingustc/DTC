@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#12192B</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimaryDark">#12192B</color>
     <color name="colorAccent">#37FDC0</color>
+
+    <color name="toolbarTextColor">@android:color/white</color>
+
+    <color name="dtcred">#FF0060</color>
+
+    <color name="issue_title_color">#2B334A</color>
 
 </resources>

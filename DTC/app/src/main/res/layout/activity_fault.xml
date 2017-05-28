@@ -1,20 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<com.nonda.dtc.views.InertiaScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary">
 
-
-
-
-    <Button
-        android:id="@+id/clear"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorAccent"
-        android:layout_margin="16dp"
-        android:layout_gravity="bottom"
-        android:text="Clear all code"
-        android:textColor="@android:color/black"/>
+        android:orientation="vertical">
 
-</FrameLayout>
+        <include layout="@layout/toolbar" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            tools:text="2 issues need to check"
+            android:layout_marginTop="32dp"
+            android:textSize="32sp"
+            android:textColor="@color/dtcred"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:layout_marginTop="16dp"
+            android:layout_gravity="center"
+            android:text="@string/powered_by_nonda"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/issue_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <Button
+            android:id="@+id/clear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:layout_margin="16dp"
+            android:layout_gravity="bottom"
+            android:text="Clear all code"
+            android:textColor="@android:color/black"/>
+
+    </LinearLayout>
+
+
+
+</com.nonda.dtc.views.InertiaScrollView>

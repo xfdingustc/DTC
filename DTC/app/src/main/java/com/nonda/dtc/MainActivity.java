@@ -117,6 +117,7 @@ public class MainActivity extends AppCompatActivity implements PermissionListene
                 .progress(true, 100)
                 .theme(Theme.DARK)
                 .progressIndeterminateStyle(false)
+                .canceledOnTouchOutside(false)
                 .content(R.string.ble_scanning)
                 .show();
 
@@ -144,8 +145,10 @@ public class MainActivity extends AppCompatActivity implements PermissionListene
                 viewPager.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-
-//                        mBleScanDialog.dismiss();
+                        if (mBleScanDialog != null &&mBleScanDialog.isShowing()) {
+                            mBleScanDialog.dismiss();
+                            mBleScanDialog = null;
+                        }
                     }
                 }, 2000);
 
