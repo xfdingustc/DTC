@@ -3,8 +3,9 @@ package com.nonda.dtc.ble;
 import android.content.Context;
 import android.content.Intent;
 
-import com.github.captain_miao.android.ble.BluetoothHelper;
+
 import com.nonda.dtc.R;
+import com.nonda.dtc.blelib.BluetoothHelper;
 
 /**
  * Created by whaley on 2017/5/26.

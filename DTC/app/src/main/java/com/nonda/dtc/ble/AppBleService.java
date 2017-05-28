@@ -5,11 +5,11 @@ import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattService;
 
-import com.github.captain_miao.android.ble.BaseBleService;
-import com.github.captain_miao.android.ble.constant.BleConnectState;
-import com.github.captain_miao.android.ble.constant.BleScanState;
-import com.github.captain_miao.android.ble.utils.BleLog;
 import com.nonda.dtc.app.AppLog;
+import com.nonda.dtc.blelib.BaseBleService;
+import com.nonda.dtc.blelib.constant.BleConnectState;
+import com.nonda.dtc.blelib.constant.BleScanState;
+import com.nonda.dtc.blelib.utils.BleLog;
 
 import java.util.UUID;
 

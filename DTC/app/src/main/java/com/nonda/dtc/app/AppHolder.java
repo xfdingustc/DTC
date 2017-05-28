@@ -3,7 +3,8 @@ package com.nonda.dtc.app;
 import android.app.Application;
 import android.content.Context;
 
-import com.github.captain_miao.android.ble.utils.BleLog;
+
+import com.nonda.dtc.blelib.utils.BleLog;
 import com.orhanobut.logger.Logger;
 
 /**
