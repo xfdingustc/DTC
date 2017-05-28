@@ -9,10 +9,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.afollestad.materialdialogs.Theme;
 import com.nonda.dtc.app.AppHolder;
 import com.nonda.dtc.model.DTCError;
+import com.nonda.dtc.model.FCDTS;
 import com.orhanobut.logger.Logger;
 
 import org.greenrobot.eventbus.EventBus;
@@ -31,6 +35,8 @@ public class FaultActivity extends Activity {
     private static final String TAG = FaultActivity.class.getSimpleName();
     private AppHolder mAppHolder = AppHolder.getInstance();
 
+    private MaterialDialog mLoadDialog;
+
     private IssueListAdapter mAdatper;
     public static void launch(Activity activity) {
         Intent intent = new Intent(activity, FaultActivity.class);
@@ -42,6 +48,14 @@ public class FaultActivity extends Activity {
         mAdatper.setIssueList(error);
         Logger.t(TAG).d("error: " + error.toString());
         title.setText("" + error.getErrors().size() + " Issues Need to Check");
+        if (mLoadDialog != null && mLoadDialog.isShowing()) {
+            mLoadDialog.dismiss();
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onFCDTC(FCDTS fcdts) {
+        Toast.makeText(this, R.string.clear_success, Toast.LENGTH_LONG).show();
     }
 
     @BindView(R.id.title)
@@ -68,6 +82,14 @@ public class FaultActivity extends Activity {
         setContentView(R.layout.activity_fault);
         ButterKnife.bind(this);
         AppHolder.getInstance().writeCmd(DTCConsts.ATDTC);
+
+        mLoadDialog = new MaterialDialog.Builder(this)
+                .progress(true, 100)
+                .theme(Theme.DARK)
+                .progressIndeterminateStyle(false)
+                .canceledOnTouchOutside(false)
+                .content(R.string.reading_fault_info)
+                .show();
 
         toolbar.setTitleTextColor(Color.WHITE);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back);

@@ -16,6 +16,7 @@ import com.nonda.dtc.blelib.constant.BleConnectState;
 import com.nonda.dtc.blelib.utils.BleLog;
 import com.nonda.dtc.blelib.utils.BleUtils;
 import com.nonda.dtc.model.DTCError;
+import com.nonda.dtc.model.FCDTS;
 import com.nonda.dtc.model.ObdData;
 import com.orhanobut.logger.Logger;
 
@@ -215,6 +216,8 @@ public class AppHolder extends Application {
             mEventBus.post(ObdData.fromString(notification));
         } else if (notification.startsWith("#ATDTC$DTC")) {
             mEventBus.post(DTCError.fromString(notification));
+        } else if (notification.startsWith("#ATFCDTC")) {
+            mEventBus.post(new FCDTS());
         }
     }
 

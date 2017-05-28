@@ -76,4 +76,6 @@
     <string name="button_log">LOG</string>
     
     <string name="powered_by_nonda">Power by nonda Technology Protection System</string>
+    <string name="reading_fault_info">Reading issues</string>
+    <string name="clear_success">Clear success</string>
 </resources>
