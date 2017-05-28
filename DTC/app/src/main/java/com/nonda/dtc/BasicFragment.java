@@ -21,6 +21,9 @@ import butterknife.BindView;
 
 public class BasicFragment extends BaseFragment {
 
+    public static float sumMpg = 0.0f;
+    public static int instantCount = 0;
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onObdData(ObdData obdData) {
         if (obdData == null) {
@@ -44,6 +47,14 @@ public class BasicFragment extends BaseFragment {
             coolant.setText(String.valueOf(obdData.coolant));
         }
 
+        if (obdData.instantMpg > 0) {
+            instantMpg.setText(String.valueOf(obdData.instantMpg));
+            sumMpg += obdData.instantMpg;
+            instantCount++;
+            averageMpg.setText(String.valueOf(sumMpg / instantCount));
+
+        }
+
     }
 
     @BindView(R.id.voltage)
@@ -60,6 +71,12 @@ public class BasicFragment extends BaseFragment {
 
     @BindView(R.id.fuleLeve)
     TextView fuleLevel;
+
+    @BindView(R.id.instantMpg)
+    TextView instantMpg;
+
+    @BindView(R.id.averageMpg)
+    TextView averageMpg;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
