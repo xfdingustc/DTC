@@ -60,5 +60,7 @@ public class DashboardFragment extends BaseFragment {
             }
         });
         tabLayout.setCurrentTab(1);
+        Fragment fragment = new BasicFragment();
+        getChildFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
     }
 }

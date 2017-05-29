@@ -130,7 +130,7 @@ public class NumberAnimTextView extends TextView {
     private String format(BigDecimal bd) {
         StringBuilder pattern = new StringBuilder();
         if (isInt) {
-            pattern.append("#,###");
+            pattern.append("####");
         } else {
             int length = 0;
             String decimals = mNumEnd.split("\\.")[1];

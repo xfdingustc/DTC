@@ -3,6 +3,7 @@ package com.nonda.dtc.model;
 import com.nonda.dtc.utls.SpeedUtils;
 import com.nonda.dtc.utls.TempUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,7 +11,7 @@ import java.util.List;
  */
 
 public class ObdData {
-    private static ObdData mLastObdData = null;
+    private static List<ObdData> mObdHistory = new ArrayList<>();
 
     public float voltage = -1.0f;
     public int rpm = -1;
@@ -54,12 +55,19 @@ public class ObdData {
             }
         }
 
-        mLastObdData = obdData;
+        add2History(obdData);
         return obdData;
     }
 
+    private static void add2History(ObdData obdData) {
+        mObdHistory.add(obdData);
+    }
+
     public static ObdData getLastObd() {
-        return mLastObdData;
+        if (mObdHistory.size() <= 1) {
+            return null;
+        }
+        return mObdHistory.get(mObdHistory.size() - 2);
     }
 
     public String getRpm() {
