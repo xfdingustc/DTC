@@ -1,7 +1,7 @@
 package com.nonda.dtc.model;
 
-import com.nonda.dtc.utls.SpeedUtils;
-import com.nonda.dtc.utls.TempUtils;
+import com.nonda.dtc.utils.SpeedUtils;
+import com.nonda.dtc.utils.TempUtils;
 
 import java.util.ArrayList;
 import java.util.List;

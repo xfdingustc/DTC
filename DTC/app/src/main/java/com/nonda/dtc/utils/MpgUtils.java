@@ -1,4 +1,4 @@
-package com.nonda.dtc.utls;
+package com.nonda.dtc.utils;
 
 /**
  * Created by whaley on 2017/5/29.

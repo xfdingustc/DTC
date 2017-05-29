@@ -1,8 +1,6 @@
 package com.nonda.dtc.ui.fragments;
 
 import android.os.Bundle;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +8,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.nonda.dtc.R;
+import com.nonda.dtc.app.AppHolder;
 import com.nonda.dtc.model.ObdData;
-import com.nonda.dtc.utls.TempUtils;
+import com.nonda.dtc.rx.Transformers;
 import com.nonda.dtc.views.NumberAnimTextView;
 import com.orhanobut.logger.Logger;
 
@@ -20,6 +19,8 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
+import butterknife.OnClick;
+import rx.functions.Action1;
 
 /**
  * Created by whaley on 2017/5/29.
@@ -34,7 +35,12 @@ public class ProFragment extends BaseFragment {
     @BindView(R.id.mph)
     NumberAnimTextView mph;
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
+    @OnClick(R.id.coolant_layout)
+    public void onCoolantLayoutClicked() {
+
+    }
+
+
     public void onObdData(ObdData obdData) {
         if (obdData == null) {
             return;
@@ -56,18 +62,22 @@ public class ProFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = createFragmentView(inflater, container, R.layout.fragment_mypro, savedInstanceState);
+
+        initViews();
         return view;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        EventBus.getDefault().register(this);
+    private void initViews() {
+        AppHolder.getInstance().getObd()
+                .compose(this.<ObdData>bindToLifecycle())
+                .compose(Transformers.<ObdData>observerForUI())
+                .subscribe(new Action1<ObdData>() {
+                    @Override
+                    public void call(ObdData obdData) {
+                        onObdData(obdData);
+                    }
+                });
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-        EventBus.getDefault().unregister(this);
-    }
+
 }

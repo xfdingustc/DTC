@@ -26,6 +26,8 @@ import java.net.URLEncoder;
 import java.util.List;
 import java.util.UUID;
 
+import rx.subjects.PublishSubject;
+
 /**
  * Created by whaley on 2017/5/26.
  */
@@ -55,6 +57,8 @@ public class AppHolder extends Application {
     public AppBluetoothHelper getBleHelper() {
         return mBleHelper;
     }
+
+    private PublishSubject<ObdData> mObdSubject = PublishSubject.create();
 
     @Override
     public void onCreate() {
@@ -212,12 +216,17 @@ public class AppHolder extends Application {
 
     private void postOneNotification(String notification) {
         if (notification.startsWith("BD$")) {
-            mEventBus.post(ObdData.fromString(notification));
+//            mEventBus.post(ObdData.fromString(notification));
+            mObdSubject.onNext(ObdData.fromString(notification));
         } else if (notification.startsWith("#ATDTC$DTC")) {
             mEventBus.post(DTCError.fromString(notification));
         } else if (notification.startsWith("#ATFCDTC")) {
             mEventBus.post(new FCDTS());
         }
+    }
+
+    public PublishSubject<ObdData> getObd() {
+        return mObdSubject;
     }
 
 

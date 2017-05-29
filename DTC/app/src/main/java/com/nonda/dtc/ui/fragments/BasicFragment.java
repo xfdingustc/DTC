@@ -7,12 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.flyco.tablayout.SegmentTabLayout;
-import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.nonda.dtc.R;
+import com.nonda.dtc.app.AppHolder;
 import com.nonda.dtc.model.ObdData;
-import com.nonda.dtc.utls.MpgUtils;
-import com.nonda.dtc.utls.TempUtils;
+import com.nonda.dtc.rx.Transformers;
+import com.nonda.dtc.utils.MpgUtils;
 import com.nonda.dtc.views.NumberAnimTextView;
 
 import org.greenrobot.eventbus.EventBus;
@@ -20,6 +19,8 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
+import rx.Observable;
+import rx.functions.Action1;
 
 /**
  * Created by whaley on 2017/5/26.
@@ -33,7 +34,6 @@ public class BasicFragment extends BaseFragment {
 
 
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onObdData(ObdData obdData) {
 
         if (obdData == null) {
@@ -115,18 +115,15 @@ public class BasicFragment extends BaseFragment {
     }
 
     private void initViews() {
-
+        AppHolder.getInstance().getObd()
+                .compose(this.<ObdData>bindToLifecycle())
+                .compose(Transformers.<ObdData>observerForUI())
+                .subscribe(new Action1<ObdData>() {
+                    @Override
+                    public void call(ObdData obdData) {
+                        onObdData(obdData);
+                    }
+                });
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        EventBus.getDefault().register(this);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        EventBus.getDefault().unregister(this);
-    }
 }

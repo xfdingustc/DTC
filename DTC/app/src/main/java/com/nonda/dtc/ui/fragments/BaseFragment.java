@@ -12,21 +12,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.trello.rxlifecycle.components.RxFragment;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
  * Created by whaley on 2017/5/26.
  */
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragment extends RxFragment {
     protected static String TAG = null;
 
     protected View mRootView;
 
 
     private static final String STATE_SAVE_IS_HIDDEN = "STATE_SAVE_IS_HIDDEN";
-
-
 
 
     @Override
