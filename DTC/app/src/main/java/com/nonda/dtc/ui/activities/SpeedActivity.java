@@ -3,24 +3,15 @@ package com.nonda.dtc.ui.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.DashPathEffect;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.LimitLine;
-import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
-import com.github.mikephil.charting.utils.Utils;
 import com.nonda.dtc.R;
 import com.nonda.dtc.app.AppHolder;
 import com.nonda.dtc.model.ObdData;
@@ -28,9 +19,9 @@ import com.nonda.dtc.rx.Transformers;
 import com.nonda.dtc.ui.obd.ObdDataHandler;
 import com.nonda.dtc.ui.obd.ObdViewHolder;
 import com.nonda.dtc.utils.DtcLineCharUtils;
+import com.nonda.dtc.utils.SpeedUtils;
 import com.nonda.dtc.utils.TempUtils;
 import com.nonda.dtc.views.NumberAnimTextView;
-import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,19 +33,19 @@ import rx.functions.Action1;
  * Created by whaley on 2017/5/29.
  */
 
-public class CoolantActivity extends BaseActivity {
-    private static final String TAG = CoolantActivity.class.getSimpleName();
+public class SpeedActivity extends BaseActivity {
+    private static final String TAG = SpeedActivity.class.getSimpleName();
     private ObdDataHandler mObdDataHandler;
 
     public static void launch(Activity activity) {
-        Intent intent = new Intent(activity, CoolantActivity.class);
+        Intent intent = new Intent(activity, SpeedActivity.class);
         activity.startActivity(intent);
     }
 
-    @BindView(R.id.coolant)
-    TextView coolant;
+    @BindView(R.id.speed)
+    NumberAnimTextView speed;
 
-    @BindView(R.id.coolant_chart)
+    @BindView(R.id.speed_chart)
     LineChart chart;
 
     @Override
@@ -64,7 +55,7 @@ public class CoolantActivity extends BaseActivity {
     }
 
     private void initViews() {
-        setContentView(R.layout.activity_coolant);
+        setContentView(R.layout.activity_speed);
         getToolbar().setNavigationIcon(R.drawable.ic_arrow_back);
         getToolbar().setTitleTextColor(Color.WHITE);
         getToolbar().setNavigationOnClickListener(new View.OnClickListener() {
@@ -73,6 +64,7 @@ public class CoolantActivity extends BaseActivity {
                 finish();
             }
         });
+        setupLineChar();
 
         mObdDataHandler = new ObdDataHandler(new ObdViewHolder() {
             @Override
@@ -92,12 +84,12 @@ public class CoolantActivity extends BaseActivity {
 
             @Override
             public NumberAnimTextView getSpeed() {
-                return null;
+                return speed;
             }
 
             @Override
             public TextView getCoolant() {
-                return coolant;
+                return null;
             }
 
             @Override
@@ -123,39 +115,26 @@ public class CoolantActivity extends BaseActivity {
                     @Override
                     public void call(ObdData obdData) {
                         mObdDataHandler.handleObdData(obdData);
-                        updateCoolantData();
+                        updateSpeedData();
                     }
                 });
-
-
-        setupLineChart();
-
-
-
     }
 
-    private void updateCoolantData() {
+    private void updateSpeedData() {
         setData();
         chart.invalidate();
     }
 
-    private void setupLineChart() {
-        LimitLine limitLine= DtcLineCharUtils.getLimitLine(this, 187f, "Average Coolart");
-        DtcLineCharUtils.setupLineChart(this, chart, 140f, 240f, limitLine);
-        updateCoolantData();
-    }
-
     private void setData() {
-
         ArrayList<Entry> values = new ArrayList<Entry>();
 
         List<ObdData> obdDataList = ObdData.getObdDataList();
 
-        int interval = 60;
+        int interval = 1;
 
         for (int i = 0; i < obdDataList.size(); i += interval) {
             ObdData obdData = obdDataList.get(i);
-            float val = TempUtils.c2p(obdData.coolant);
+            float val = SpeedUtils.kmh2Mph(obdData.spd);
             Log.d(TAG, "x: " + i / interval + " y: " + val);
             values.add(new Entry(i / interval, val));
         }
@@ -163,5 +142,11 @@ public class CoolantActivity extends BaseActivity {
 
 
         DtcLineCharUtils.updateDataSet(this, chart, values);
+    }
+
+    private void setupLineChar() {
+        LimitLine limitLine = DtcLineCharUtils.getLimitLine(this, 45.2f, "Average Speed");
+        DtcLineCharUtils.setupLineChart(this, chart, 0, 80, limitLine);
+        updateSpeedData();
     }
 }

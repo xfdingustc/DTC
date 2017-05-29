@@ -25,6 +25,7 @@
         <service android:name="com.nonda.dtc.ble.AppBleService"/>
         <activity android:name=".ui.activities.GoodActivity"/>
         <activity android:name=".ui.activities.CoolantActivity"/>
+        <activity android:name=".ui.activities.SpeedActivity"/>
     </application>
 
 </manifest>

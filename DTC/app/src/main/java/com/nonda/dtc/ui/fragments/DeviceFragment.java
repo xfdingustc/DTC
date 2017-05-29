@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.ViewAnimator;
 
+import com.nonda.dtc.app.AppHolder;
+import com.nonda.dtc.rx.Transformers;
 import com.nonda.dtc.ui.activities.FaultActivity;
 import com.nonda.dtc.ui.activities.GoodActivity;
 import com.nonda.dtc.R;
@@ -19,6 +21,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import rx.functions.Action1;
 
 /**
  * Created by whaley on 2017/5/26.
@@ -36,8 +39,6 @@ public class DeviceFragment extends BaseFragment {
 
     }
 
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onObdData(ObdData data) {
         if (data == null) {
             return;
@@ -60,19 +61,21 @@ public class DeviceFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = createFragmentView(inflater, container, R.layout.fragment_device, savedInstanceState);
+        initViews();
         return view;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        EventBus.getDefault().register(this);
+    private void initViews() {
+        AppHolder.getInstance().getObd()
+                .compose(this.<ObdData>bindToLifecycle())
+                .compose(Transformers.<ObdData>observerForUI())
+                .subscribe(new Action1<ObdData>() {
+                    @Override
+                    public void call(ObdData obdData) {
+                        onObdData(obdData);
+                    }
+                });
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-        EventBus.getDefault().unregister(this);
-    }
 
 }

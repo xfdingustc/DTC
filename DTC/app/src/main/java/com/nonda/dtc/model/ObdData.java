@@ -1,5 +1,6 @@
 package com.nonda.dtc.model;
 
+import com.nonda.dtc.utils.LimitList;
 import com.nonda.dtc.utils.MpgUtils;
 import com.nonda.dtc.utils.SpeedUtils;
 import com.nonda.dtc.utils.TempUtils;
@@ -12,7 +13,7 @@ import java.util.List;
  */
 
 public class ObdData {
-    private static List<ObdData> mObdHistory = new ArrayList<>();
+    private static List<ObdData> mObdHistory = new LimitList<>(600);
 
     public static float sumMpg = 0.0f;
     public static int instantCount = 0;
@@ -81,6 +82,10 @@ public class ObdData {
             return null;
         }
         return mObdHistory.get(mObdHistory.size() - 2);
+    }
+
+    public static List<ObdData> getObdDataList() {
+        return mObdHistory;
     }
 
     public String getRpm() {

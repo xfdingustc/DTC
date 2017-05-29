@@ -119,7 +119,7 @@ public abstract class BaseBleService extends Service implements SimpleScanCallba
 		@Override
 		public void onCharacteristicChanged(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic) {
 			final byte[] data = characteristic.getValue();
-			BleLog.i(TAG, "onCharacteristicChanged: " + HexUtil.encodeHexStr(data));
+//			BleLog.i(TAG, "onCharacteristicChanged: " + HexUtil.encodeHexStr(data));
 			UUID uuid = characteristic.getUuid();
 
 			sendBleMessage(BleConstants.MSG_BLE_ID_CHARACTERISTIC_NOTIFICATION, BluetoothGatt.GATT_SUCCESS, data, uuid);

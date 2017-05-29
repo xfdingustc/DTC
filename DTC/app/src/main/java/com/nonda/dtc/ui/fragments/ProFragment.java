@@ -12,6 +12,7 @@ import com.nonda.dtc.app.AppHolder;
 import com.nonda.dtc.model.ObdData;
 import com.nonda.dtc.rx.Transformers;
 import com.nonda.dtc.ui.activities.CoolantActivity;
+import com.nonda.dtc.ui.activities.SpeedActivity;
 import com.nonda.dtc.ui.obd.ObdDataHandler;
 import com.nonda.dtc.ui.obd.ObdViewHolder;
 import com.nonda.dtc.views.NumberAnimTextView;
@@ -42,6 +43,11 @@ public class ProFragment extends BaseFragment {
     @OnClick(R.id.coolant_layout)
     public void onCoolantLayoutClicked() {
         CoolantActivity.launch(getActivity());
+    }
+
+    @OnClick(R.id.speed_layout)
+    public void onSpeedLayoutClicked() {
+        SpeedActivity.launch(getActivity());
     }
 
 
