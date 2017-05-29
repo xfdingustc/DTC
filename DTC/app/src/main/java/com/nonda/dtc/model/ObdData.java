@@ -1,5 +1,7 @@
 package com.nonda.dtc.model;
 
+import com.nonda.dtc.utls.SpeedUtils;
+
 import java.util.List;
 
 /**
@@ -50,5 +52,13 @@ public class ObdData {
         }
 
         return obdData;
+    }
+
+    public String getRpm() {
+        return String.valueOf(rpm);
+    }
+
+    public String getSpeed() {
+        return String.valueOf((int)(SpeedUtils.kmh2Mph(spd)));
     }
 }

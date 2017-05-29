@@ -9,8 +9,10 @@ import android.widget.TextView;
 
 import com.nonda.dtc.model.ObdData;
 import com.nonda.dtc.utls.FloatUtils;
+import com.nonda.dtc.utls.MpgUtils;
 import com.nonda.dtc.utls.SpeedUtils;
 import com.nonda.dtc.utls.TempUtils;
+import com.nonda.dtc.views.NumberAnimTextView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -29,6 +31,8 @@ public class BasicFragment extends BaseFragment {
     public static float sumMpg = 0.0f;
     public static int instantCount = 0;
 
+    public static ObdData mLastObdData = null;
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onObdData(ObdData obdData) {
 
@@ -39,29 +43,42 @@ public class BasicFragment extends BaseFragment {
             voltage.setText(String.valueOf(obdData.voltage));
         }
         if (obdData.flueLevel > 0) {
-            fuleLevel.setText(String.valueOf(obdData.flueLevel));
+            fuleLevel.setText(String.valueOf((int)obdData.flueLevel));
         }
 
         if (obdData.rpm > 0) {
-            rpm.setText(String.valueOf(obdData.rpm));
+            String begin = mLastObdData == null ? "0" : mLastObdData.getRpm();
+            rpm.setNumberString(begin, obdData.getRpm());
         }
         if (obdData.spd > 0) {
-            speed.setText(FloatUtils.toFloatString(SpeedUtils.kmh2Mph(obdData.spd)));
+            String begin = mLastObdData == null ? "0" : mLastObdData.getSpeed();
+            speed.setNumberString(begin, obdData.getSpeed());
         }
 
         if (obdData.coolant > 0) {
-            coolant.setText(String.valueOf(TempUtils.c2p(obdData.coolant)));
+            coolant.setText(String.valueOf((int)TempUtils.c2p(obdData.coolant)));
         }
 
         if (obdData.instantMpg > 0) {
-            instantMpg.setText((FloatUtils.toFloatString(235.2145836f / obdData.instantMpg)));
+
+            instantMpg.setText(MpgUtils.kml2Mpg(obdData.instantMpg));
+
+            String begin = "0.0";
+            if (instantCount != 0) {
+                begin = MpgUtils.kml2Mpg(sumMpg / instantCount);
+            }
+
             sumMpg += obdData.instantMpg;
             instantCount++;
             float average = sumMpg / instantCount;
-            averageMpg.setText((FloatUtils.toFloatString(235.2145836f / average)));
-            range.setText((FloatUtils.toFloatString((50 / average) / 1.609344f)));
+            averageMpg.setNumberString(begin, MpgUtils.kml2Mpg(sumMpg / instantCount));
+            range.setText(String.valueOf((int) ((50 / average) / 1.609344f)));
+
+
 
         }
+
+        mLastObdData = obdData;
 
     }
 
@@ -69,10 +86,10 @@ public class BasicFragment extends BaseFragment {
     TextView voltage;
 
     @BindView(R.id.rmp)
-    TextView rpm;
+    NumberAnimTextView rpm;
 
     @BindView(R.id.speed)
-    TextView speed;
+    NumberAnimTextView speed;
 
     @BindView(R.id.coolant)
     TextView coolant;
@@ -84,7 +101,7 @@ public class BasicFragment extends BaseFragment {
     TextView instantMpg;
 
     @BindView(R.id.averageMpg)
-    TextView averageMpg;
+    NumberAnimTextView averageMpg;
 
     @BindView(R.id.range)
     TextView range;
