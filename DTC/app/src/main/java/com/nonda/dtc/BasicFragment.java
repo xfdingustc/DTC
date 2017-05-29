@@ -8,10 +8,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.nonda.dtc.model.ObdData;
+import com.nonda.dtc.utls.FloatUtils;
+import com.nonda.dtc.utls.SpeedUtils;
+import com.nonda.dtc.utls.TempUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+
+import java.text.DecimalFormat;
 
 import butterknife.BindView;
 
@@ -26,6 +31,7 @@ public class BasicFragment extends BaseFragment {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onObdData(ObdData obdData) {
+
         if (obdData == null) {
             return;
         }
@@ -40,20 +46,20 @@ public class BasicFragment extends BaseFragment {
             rpm.setText(String.valueOf(obdData.rpm));
         }
         if (obdData.spd > 0) {
-            speed.setText(String.valueOf(obdData.spd));
+            speed.setText(FloatUtils.toFloatString(SpeedUtils.kmh2Mph(obdData.spd)));
         }
 
         if (obdData.coolant > 0) {
-            coolant.setText(String.valueOf(obdData.coolant));
+            coolant.setText(String.valueOf(TempUtils.c2p(obdData.coolant)));
         }
 
         if (obdData.instantMpg > 0) {
-            instantMpg.setText(String.valueOf(obdData.instantMpg));
+            instantMpg.setText((FloatUtils.toFloatString(235.2145836f / obdData.instantMpg)));
             sumMpg += obdData.instantMpg;
             instantCount++;
             float average = sumMpg / instantCount;
-            averageMpg.setText(String.valueOf(average));
-            range.setText(String.valueOf(50 / average));
+            averageMpg.setText((FloatUtils.toFloatString(235.2145836f / average)));
+            range.setText((FloatUtils.toFloatString((50 / average) / 1.609344f)));
 
         }
 

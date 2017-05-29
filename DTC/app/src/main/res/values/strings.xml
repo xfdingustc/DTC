@@ -15,7 +15,7 @@
     <string name="ble_scanning">Scanning</string>
     <string name="ble_find">Find device</string>
     <string name="connect_success">Connect success</string>
-    <string name="connect_failed">Connect failed</string>
+    <string name="connect_failed">Connect failed, reconnecting</string>
     <string name="connecting">Connecting</string>
 
     <string name="label_command" formatted="false">Command</string>
@@ -78,4 +78,5 @@
     <string name="powered_by_nonda">Power by nonda Technology Protection System</string>
     <string name="reading_fault_info">Reading issues</string>
     <string name="clear_success">Clear success</string>
+    <string name="retry">Retry</string>
 </resources>

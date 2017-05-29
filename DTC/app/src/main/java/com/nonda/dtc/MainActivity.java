@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements PermissionListene
 
     private MaterialDialog mBleScanDialog;
 
+    private int mRetryCount = 0;
 
 
     @BindView(R.id.view_pager)
@@ -135,36 +136,38 @@ public class MainActivity extends AppCompatActivity implements PermissionListene
         inkPageIndicator.setViewPager(viewPager);
     }
 
+    private ConnectCallback mConnectCallback = new ConnectCallback() {
+        @Override
+        public void onConnectSuccess() {
+            AppHolder.getInstance().getBleHelper().mConnCallback = null;
+            Logger.t(TAG).d("connect success");
+            mBleScanDialog.setContent(R.string.connect_success);
+            viewPager.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (mBleScanDialog != null && mBleScanDialog.isShowing()) {
+                        mBleScanDialog.dismiss();
+                        mBleScanDialog = null;
+                    }
+                }
+            }, 500);
 
+        }
+
+        @Override
+        public void onConnectFailed(ConnectError error) {
+            Logger.t(TAG).d("on connect failed");
+            mBleScanDialog.setContent(getString(R.string.connect_failed) + " " + mRetryCount++);
+            connectDevice(mBleDevice.address);
+
+        }
+    };
 
 
     public void connectDevice(String deviceMac) {
         Logger.t(TAG).d("connect device: " + deviceMac);
         mBleScanDialog.setContent(R.string.connecting);
-        AppHolder.getInstance().getBleHelper().connectDevice(deviceMac, new ConnectCallback() {
-            @Override
-            public void onConnectSuccess() {
-                AppHolder.getInstance().getBleHelper().mConnCallback = null;
-                Logger.t(TAG).d("connect success");
-                mBleScanDialog.setContent(R.string.connect_success);
-                viewPager.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (mBleScanDialog != null &&mBleScanDialog.isShowing()) {
-                            mBleScanDialog.dismiss();
-                            mBleScanDialog = null;
-                        }
-                    }
-                }, 2000);
-
-            }
-
-            @Override
-            public void onConnectFailed(ConnectError error) {
-                Logger.t(TAG).d("on connect failed");
-                mBleScanDialog.setContent(R.string.connect_failed);
-            }
-        });
+        AppHolder.getInstance().getBleHelper().connectDevice(deviceMac, mConnectCallback);
     }
 
     String[] permissions = new String[]{Manifest.permission.ACCESS_COARSE_LOCATION};
