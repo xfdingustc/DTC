@@ -11,6 +11,8 @@ import com.nonda.dtc.R;
 import com.nonda.dtc.app.AppHolder;
 import com.nonda.dtc.model.ObdData;
 import com.nonda.dtc.rx.Transformers;
+import com.nonda.dtc.ui.obd.ObdDataHandler;
+import com.nonda.dtc.ui.obd.ObdViewHolder;
 import com.nonda.dtc.utils.MpgUtils;
 import com.nonda.dtc.views.NumberAnimTextView;
 
@@ -28,58 +30,7 @@ import rx.functions.Action1;
 
 public class BasicFragment extends BaseFragment {
 
-    public static float sumMpg = 0.0f;
-    public static int instantCount = 0;
-
-
-
-
-    public void onObdData(ObdData obdData) {
-
-        if (obdData == null) {
-            return;
-        }
-        if (obdData.voltage > 0) {
-            voltage.setText(String.valueOf(obdData.voltage));
-        }
-        if (obdData.flueLevel > 0) {
-            fuleLevel.setText(String.valueOf((int)obdData.flueLevel));
-        }
-
-        if (obdData.rpm > 0) {
-            String begin = ObdData.getLastObd() == null ? "0" : ObdData.getLastObd().getRpm();
-            rpm.setNumberString(begin, obdData.getRpm());
-        }
-        if (obdData.spd > 0) {
-            String begin = ObdData.getLastObd() == null ? "0" : ObdData.getLastObd().getSpeed();
-            speed.setNumberString(begin, obdData.getSpeed());
-        }
-
-        if (obdData.coolant > 0) {
-            coolant.setText(obdData.getCoolant());
-        }
-
-        if (obdData.instantMpg > 0) {
-
-            instantMpg.setText(MpgUtils.kml2Mpg(obdData.instantMpg));
-
-            String begin = "0.0";
-            if (instantCount != 0) {
-                begin = MpgUtils.kml2Mpg(sumMpg / instantCount);
-            }
-
-            sumMpg += obdData.instantMpg;
-            instantCount++;
-            float average = sumMpg / instantCount;
-            averageMpg.setNumberString(begin, MpgUtils.kml2Mpg(sumMpg / instantCount));
-            range.setText(String.valueOf((int) ((50 / average) / 1.609344f)));
-
-
-
-        }
-
-
-    }
+    private ObdDataHandler mObdDataHandler;
 
     @BindView(R.id.voltage)
     TextView voltage;
@@ -115,13 +66,55 @@ public class BasicFragment extends BaseFragment {
     }
 
     private void initViews() {
+        mObdDataHandler = new ObdDataHandler(new ObdViewHolder() {
+            @Override
+            public TextView getVoltage() {
+                return voltage;
+            }
+
+            @Override
+            public TextView getFuleLevel() {
+                return fuleLevel;
+            }
+
+            @Override
+            public NumberAnimTextView getRpm() {
+                return rpm;
+            }
+
+            @Override
+            public NumberAnimTextView getSpeed() {
+                return speed;
+            }
+
+            @Override
+            public TextView getCoolant() {
+                return coolant;
+            }
+
+            @Override
+            public TextView getInstantMpg() {
+                return instantMpg;
+            }
+
+            @Override
+            public NumberAnimTextView getAverageMpg() {
+                return averageMpg;
+            }
+
+            @Override
+            public TextView getRange() {
+                return range;
+            }
+        });
+
         AppHolder.getInstance().getObd()
                 .compose(this.<ObdData>bindToLifecycle())
                 .compose(Transformers.<ObdData>observerForUI())
                 .subscribe(new Action1<ObdData>() {
                     @Override
                     public void call(ObdData obdData) {
-                        onObdData(obdData);
+                        mObdDataHandler.handleObdData(obdData);
                     }
                 });
     }

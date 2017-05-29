@@ -20,7 +20,7 @@ public class NumberAnimTextView extends TextView {
 
     private String mNumStart = "0";  // 起始值 默认 0
     private String mNumEnd; // 结束值
-    private long mDuration = 1000; // 动画总时间 默认 2000 毫秒
+    private long mDuration = 500; // 动画总时间 默认 2000 毫秒
     private String mPrefixString = ""; // 前缀
     private String mPostfixString = ""; // 后缀
     private boolean isEnableAnim = true; // 是否开启动画

@@ -100,7 +100,7 @@ public abstract class BaseBleService extends Service implements SimpleScanCallba
 		@Override
 		public void onCharacteristicWrite(BluetoothGatt gatt,
 				BluetoothGattCharacteristic characteristic, int status) {
-			BleLog.i(TAG, "onCharacteristicWrite: " + BleUtils.getGattStatus(status));
+//			BleLog.i(TAG, "onCharacteristicWrite: " + BleUtils.getGattStatus(status));
 			UUID uuid = characteristic.getUuid();
 			sendBleMessage(BleConstants.MSG_BLE_ID_CHARACTERISTIC_WRITE, status, uuid);
 			onNextWrite();

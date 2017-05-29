@@ -11,6 +11,9 @@ import com.nonda.dtc.R;
 import com.nonda.dtc.app.AppHolder;
 import com.nonda.dtc.model.ObdData;
 import com.nonda.dtc.rx.Transformers;
+import com.nonda.dtc.ui.activities.CoolantActivity;
+import com.nonda.dtc.ui.obd.ObdDataHandler;
+import com.nonda.dtc.ui.obd.ObdViewHolder;
 import com.nonda.dtc.views.NumberAnimTextView;
 import com.orhanobut.logger.Logger;
 
@@ -28,6 +31,7 @@ import rx.functions.Action1;
 
 public class ProFragment extends BaseFragment {
     private static final String TAG = ProFragment.class.getSimpleName();
+    private ObdDataHandler mObdDataHandler;
 
     @BindView(R.id.coolant)
     TextView coolant;
@@ -37,25 +41,11 @@ public class ProFragment extends BaseFragment {
 
     @OnClick(R.id.coolant_layout)
     public void onCoolantLayoutClicked() {
-
+        CoolantActivity.launch(getActivity());
     }
 
 
-    public void onObdData(ObdData obdData) {
-        if (obdData == null) {
-            return;
-        }
 
-        if (obdData.coolant > 0) {
-            coolant.setText(obdData.getCoolant());
-        }
-
-        if (obdData.spd > 0) {
-            String begin = ObdData.getLastObd() == null ? "0" : ObdData.getLastObd().getSpeed();
-            Logger.t(TAG).d("begin: " + begin);
-            mph.setNumberString(begin, obdData.getSpeed());
-        }
-    }
 
 
     @Nullable
@@ -68,13 +58,54 @@ public class ProFragment extends BaseFragment {
     }
 
     private void initViews() {
+        mObdDataHandler = new ObdDataHandler(new ObdViewHolder() {
+            @Override
+            public TextView getVoltage() {
+                return null;
+            }
+
+            @Override
+            public TextView getFuleLevel() {
+                return null;
+            }
+
+            @Override
+            public NumberAnimTextView getRpm() {
+                return null;
+            }
+
+            @Override
+            public NumberAnimTextView getSpeed() {
+                return mph;
+            }
+
+            @Override
+            public TextView getCoolant() {
+                return coolant;
+            }
+
+            @Override
+            public TextView getInstantMpg() {
+                return null;
+            }
+
+            @Override
+            public NumberAnimTextView getAverageMpg() {
+                return null;
+            }
+
+            @Override
+            public TextView getRange() {
+                return null;
+            }
+        });
         AppHolder.getInstance().getObd()
                 .compose(this.<ObdData>bindToLifecycle())
                 .compose(Transformers.<ObdData>observerForUI())
                 .subscribe(new Action1<ObdData>() {
                     @Override
                     public void call(ObdData obdData) {
-                        onObdData(obdData);
+                        mObdDataHandler.handleObdData(obdData);
                     }
                 });
     }

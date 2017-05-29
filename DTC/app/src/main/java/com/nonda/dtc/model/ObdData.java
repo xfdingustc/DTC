@@ -1,5 +1,6 @@
 package com.nonda.dtc.model;
 
+import com.nonda.dtc.utils.MpgUtils;
 import com.nonda.dtc.utils.SpeedUtils;
 import com.nonda.dtc.utils.TempUtils;
 
@@ -13,10 +14,15 @@ import java.util.List;
 public class ObdData {
     private static List<ObdData> mObdHistory = new ArrayList<>();
 
+    public static float sumMpg = 0.0f;
+    public static int instantCount = 0;
+
+    private static float lastAverage = 0.0f;
+
     public float voltage = -1.0f;
     public int rpm = -1;
-    public int spd = -1;
-    public int coolant = -1;
+    public int spd = 0;
+    public int coolant = 0;
     public float flueLevel = -1.0f;
     public float instantMpg = -1.0f;
     public int error = 0;
@@ -56,6 +62,13 @@ public class ObdData {
         }
 
         add2History(obdData);
+        if (obdData.instantMpg > 0) {
+            if (instantCount != 0) {
+                lastAverage = sumMpg / instantCount;
+            }
+            sumMpg += obdData.instantMpg;
+            instantCount++;
+        }
         return obdData;
     }
 
@@ -80,5 +93,27 @@ public class ObdData {
 
     public String getCoolant() {
         return String.valueOf((int) TempUtils.c2p(coolant));
+    }
+
+    public String getInstantMpg() {
+        return MpgUtils.kml2Mpg(instantMpg);
+    }
+
+    public String getLastAverageMpeg() {
+        return MpgUtils.kml2Mpg(lastAverage);
+    }
+
+    public String getCurrentAverageMpg() {
+        if (instantCount == 0) {
+            return "0.0";
+        }
+        return MpgUtils.kml2Mpg(sumMpg / instantCount);
+    }
+
+    public String getRange() {
+        if (instantCount == 0) {
+            return "0";
+        }
+        return String.valueOf((int) ((50 / (sumMpg / instantCount)) / 1.609344f));
     }
 }

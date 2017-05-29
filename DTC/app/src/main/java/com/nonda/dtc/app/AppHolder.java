@@ -197,20 +197,7 @@ public class AppHolder extends Application {
             postOneNotification(oneNotification);
         }
 
-//        if (values.indexOf("DTC") > 0) {
-//            Logger.t(TAG).d("" + values);
-//        }
-//        if (values.startsWith("BD$")) {
-//            String notification = mNotificationBuilder.toString();
-////                Logger.t(TAG).i("onCharacteristicNotification: " + notification);
-//            ObdData obdData = ObdData.fromString(notification);
-//            if (obdData != null) {
-//                mEventBus.post(obdData);
-//            }
-//            mNotificationBuilder = new StringBuilder(values);
-//        } else {
-//            mNotificationBuilder.append(values);
-//        }
+
 
     }
 
