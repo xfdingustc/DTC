@@ -1,6 +1,7 @@
 package com.nonda.dtc.model;
 
 import com.nonda.dtc.utls.SpeedUtils;
+import com.nonda.dtc.utls.TempUtils;
 
 import java.util.List;
 
@@ -9,6 +10,8 @@ import java.util.List;
  */
 
 public class ObdData {
+    private static ObdData mLastObdData = null;
+
     public float voltage = -1.0f;
     public int rpm = -1;
     public int spd = -1;
@@ -51,7 +54,12 @@ public class ObdData {
             }
         }
 
+        mLastObdData = obdData;
         return obdData;
+    }
+
+    public static ObdData getLastObd() {
+        return mLastObdData;
     }
 
     public String getRpm() {
@@ -60,5 +68,9 @@ public class ObdData {
 
     public String getSpeed() {
         return String.valueOf((int)(SpeedUtils.kmh2Mph(spd)));
+    }
+
+    public String getCoolant() {
+        return String.valueOf((int) TempUtils.c2p(coolant));
     }
 }

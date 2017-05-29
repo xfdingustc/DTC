@@ -30,7 +30,7 @@ public class BasicFragment extends BaseFragment {
     public static float sumMpg = 0.0f;
     public static int instantCount = 0;
 
-    public static ObdData mLastObdData = null;
+
 
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -47,16 +47,16 @@ public class BasicFragment extends BaseFragment {
         }
 
         if (obdData.rpm > 0) {
-            String begin = mLastObdData == null ? "0" : mLastObdData.getRpm();
+            String begin = ObdData.getLastObd() == null ? "0" : ObdData.getLastObd().getRpm();
             rpm.setNumberString(begin, obdData.getRpm());
         }
         if (obdData.spd > 0) {
-            String begin = mLastObdData == null ? "0" : mLastObdData.getSpeed();
+            String begin = ObdData.getLastObd() == null ? "0" : ObdData.getLastObd().getSpeed();
             speed.setNumberString(begin, obdData.getSpeed());
         }
 
         if (obdData.coolant > 0) {
-            coolant.setText(String.valueOf((int)TempUtils.c2p(obdData.coolant)));
+            coolant.setText(obdData.getCoolant());
         }
 
         if (obdData.instantMpg > 0) {
@@ -78,7 +78,6 @@ public class BasicFragment extends BaseFragment {
 
         }
 
-        mLastObdData = obdData;
 
     }
 
