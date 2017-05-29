@@ -1,4 +1,4 @@
-package com.nonda.dtc;
+package com.nonda.dtc.ui.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,8 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.ViewAnimator;
-import android.widget.ViewSwitcher;
 
+import com.nonda.dtc.ui.activities.FaultActivity;
+import com.nonda.dtc.ui.activities.GoodActivity;
+import com.nonda.dtc.R;
 import com.nonda.dtc.model.ObdData;
 
 import org.greenrobot.eventbus.EventBus;

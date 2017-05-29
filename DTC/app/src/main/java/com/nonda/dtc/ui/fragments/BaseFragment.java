@@ -1,4 +1,4 @@
-package com.nonda.dtc;
+package com.nonda.dtc.ui.fragments;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;

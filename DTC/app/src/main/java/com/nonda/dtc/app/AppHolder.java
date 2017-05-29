@@ -8,7 +8,6 @@ import android.content.Context;
 import android.util.Log;
 
 
-import com.nonda.dtc.MainActivity;
 import com.nonda.dtc.ble.AppBluetoothHelper;
 import com.nonda.dtc.blelib.BleCallback;
 import com.nonda.dtc.blelib.BluetoothHelper;

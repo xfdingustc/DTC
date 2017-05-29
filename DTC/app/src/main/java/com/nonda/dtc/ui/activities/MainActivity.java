@@ -1,11 +1,8 @@
-package com.nonda.dtc;
+package com.nonda.dtc.ui.activities;
 
 import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothGatt;
-import android.bluetooth.BluetoothGattCharacteristic;
-import android.bluetooth.BluetoothGattService;
 import android.content.Context;
 import android.content.Intent;
 import android.location.LocationManager;
@@ -22,28 +19,22 @@ import com.afollestad.materialdialogs.Theme;
 import com.example.captain_miao.grantap.ListenerPermission;
 import com.example.captain_miao.grantap.listeners.PermissionListener;
 
+import com.nonda.dtc.R;
+import com.nonda.dtc.ui.adapters.SimpleFragmentPagerAdapter;
 import com.nonda.dtc.app.AppHolder;
-import com.nonda.dtc.app.AppLog;
-import com.nonda.dtc.ble.AppBluetoothHelper;
-import com.nonda.dtc.blelib.BleCallback;
 import com.nonda.dtc.blelib.BleScanner;
 import com.nonda.dtc.blelib.BluetoothHelper;
 import com.nonda.dtc.blelib.ConnectCallback;
 import com.nonda.dtc.blelib.SimpleScanCallback;
-import com.nonda.dtc.blelib.constant.BleConnectState;
 import com.nonda.dtc.blelib.constant.BleScanState;
 import com.nonda.dtc.blelib.constant.ConnectError;
-import com.nonda.dtc.blelib.utils.BleUtils;
 import com.nonda.dtc.blelib.utils.HexUtil;
 import com.nonda.dtc.model.BleDevice;
-import com.nonda.dtc.model.ObdData;
+import com.nonda.dtc.ui.fragments.BasicFragment;
+import com.nonda.dtc.ui.fragments.DashboardFragment;
+import com.nonda.dtc.ui.fragments.DeviceFragment;
 import com.nonda.dtc.views.InkPageIndicator;
 import com.orhanobut.logger.Logger;
-
-import org.greenrobot.eventbus.EventBus;
-
-import java.util.List;
-import java.util.UUID;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -131,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements PermissionListene
     private void initViews() {
         mAdapter = new SimpleFragmentPagerAdapter(getFragmentManager());
         mAdapter.addFragment(new DeviceFragment());
-        mAdapter.addFragment(new BasicFragment());
+        mAdapter.addFragment(new DashboardFragment());
         viewPager.setAdapter(mAdapter);
         inkPageIndicator.setViewPager(viewPager);
     }

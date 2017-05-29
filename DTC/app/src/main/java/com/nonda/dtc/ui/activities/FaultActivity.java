@@ -1,4 +1,4 @@
-package com.nonda.dtc;
+package com.nonda.dtc.ui.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -14,6 +14,9 @@ import android.widget.Toolbar;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.Theme;
+import com.nonda.dtc.DTCConsts;
+import com.nonda.dtc.ui.adapters.IssueListAdapter;
+import com.nonda.dtc.R;
 import com.nonda.dtc.app.AppHolder;
 import com.nonda.dtc.model.DTCError;
 import com.nonda.dtc.model.FCDTS;

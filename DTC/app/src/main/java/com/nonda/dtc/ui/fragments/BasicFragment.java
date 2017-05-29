@@ -1,4 +1,4 @@
-package com.nonda.dtc;
+package com.nonda.dtc.ui.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,18 +7,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.flyco.tablayout.SegmentTabLayout;
+import com.flyco.tablayout.listener.OnTabSelectListener;
+import com.nonda.dtc.R;
 import com.nonda.dtc.model.ObdData;
-import com.nonda.dtc.utls.FloatUtils;
 import com.nonda.dtc.utls.MpgUtils;
-import com.nonda.dtc.utls.SpeedUtils;
 import com.nonda.dtc.utls.TempUtils;
 import com.nonda.dtc.views.NumberAnimTextView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-
-import java.text.DecimalFormat;
 
 import butterknife.BindView;
 
@@ -32,6 +31,7 @@ public class BasicFragment extends BaseFragment {
     public static int instantCount = 0;
 
     public static ObdData mLastObdData = null;
+
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onObdData(ObdData obdData) {
@@ -106,10 +106,17 @@ public class BasicFragment extends BaseFragment {
     @BindView(R.id.range)
     TextView range;
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = createFragmentView(inflater, container, R.layout.fragment_basic, savedInstanceState);
+        initViews();
         return view;
+    }
+
+    private void initViews() {
+
     }
 
     @Override

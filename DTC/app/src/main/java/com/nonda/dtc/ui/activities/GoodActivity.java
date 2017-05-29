@@ -1,16 +1,12 @@
-package com.nonda.dtc;
+package com.nonda.dtc.ui.activities;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
 
-import java.lang.reflect.AccessibleObject;
+import com.nonda.dtc.R;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**

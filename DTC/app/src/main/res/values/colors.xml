@@ -10,4 +10,6 @@
 
     <color name="issue_title_color">#2B334A</color>
 
+    <color name="selected">#7F99B0</color>
+
 </resources>

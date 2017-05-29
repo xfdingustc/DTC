@@ -1,4 +1,4 @@
-package com.nonda.dtc;
+package com.nonda.dtc.ui.adapters;
 
 
 
