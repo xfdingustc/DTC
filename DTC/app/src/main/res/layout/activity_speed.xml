@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:background="@color/colorPrimary">
+    android:background="@color/colorPrimary"
+    android:orientation="vertical">
 
     <Toolbar
         android:id="@+id/toolbar"
@@ -14,44 +14,36 @@
         android:title="Coolant History"
         android:titleTextColor="@color/toolbarTextColor"></Toolbar>
 
+
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
             android:src="@drawable/speed" />
 
         <com.nonda.dtc.views.NumberAnimTextView
             android:id="@+id/speed"
+            style="@style/TextAppearance.Number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            tools:text="192"
-            android:textColor="@android:color/white"
-            android:textSize="32sp"
-            android:layout_marginBottom="56dp"/>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="248dp"
-            android:layout_gravity="bottom"
-            android:background="@color/colorPrimary">
-
-
-            <com.github.mikephil.charting.charts.LineChart
-                android:id="@+id/speed_chart"
-                android:layout_width="match_parent"
-                android:layout_height="248dp"
-                android:layout_gravity="bottom" />
-        </FrameLayout>
+            android:layout_marginTop="16dp"
+            tools:text="192" />
 
 
     </FrameLayout>
 
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/speed_chart"
+        android:layout_width="match_parent"
+        android:layout_height="248dp"
+        android:layout_gravity="bottom" />
 
 
 </LinearLayout>
