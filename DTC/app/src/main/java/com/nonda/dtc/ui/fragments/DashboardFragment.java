@@ -47,7 +47,7 @@ public class DashboardFragment extends BaseFragment {
                         fragment = new NormalFragment();
                         break;
                     case 2:
-                        fragment = new ProFragment();
+                        fragment = new SportFragment();
                         break;
                 }
                 getChildFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();

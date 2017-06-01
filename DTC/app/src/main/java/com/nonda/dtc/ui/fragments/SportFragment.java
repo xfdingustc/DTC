@@ -16,11 +16,6 @@ import com.nonda.dtc.ui.activities.SpeedActivity;
 import com.nonda.dtc.ui.obd.ObdDataHandler;
 import com.nonda.dtc.ui.obd.ObdViewHolder;
 import com.nonda.dtc.views.NumberAnimTextView;
-import com.orhanobut.logger.Logger;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -30,8 +25,8 @@ import rx.functions.Action1;
  * Created by whaley on 2017/5/29.
  */
 
-public class ProFragment extends BaseFragment {
-    private static final String TAG = ProFragment.class.getSimpleName();
+public class SportFragment extends BaseFragment {
+    private static final String TAG = SportFragment.class.getSimpleName();
     private ObdDataHandler mObdDataHandler;
 
     @BindView(R.id.coolant)
@@ -57,7 +52,7 @@ public class ProFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view = createFragmentView(inflater, container, R.layout.fragment_mypro, savedInstanceState);
+        View view = createFragmentView(inflater, container, R.layout.fragment_sport, savedInstanceState);
 
         initViews();
         return view;
