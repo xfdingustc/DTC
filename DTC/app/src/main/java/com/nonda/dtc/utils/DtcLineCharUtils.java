@@ -2,6 +2,7 @@ package com.nonda.dtc.utils;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 
@@ -24,40 +25,70 @@ import java.util.ArrayList;
  */
 
 public class DtcLineCharUtils {
-    public static void setupLineChart(Context context, LineChart chart, float min, float max, LimitLine ll1) {
+    public static void setupLineChart(Context context, LineChart mChart, float min, float max, LimitLine ll) {
 
 
-        chart.setPinchZoom(false);
+        // no description text
+        mChart.getDescription().setEnabled(false);
 
-        XAxis x = chart.getXAxis();
-        x.setEnabled(false);
+        // enable touch gestures
+        mChart.setTouchEnabled(true);
+
+        // enable scaling and dragging
+        mChart.setDragEnabled(true);
+        mChart.setScaleEnabled(true);
+        // mChart.setScaleXEnabled(true);
+        // mChart.setScaleYEnabled(true);
+
+        // if disabled, scaling can be done on x- and y-axis separately
+        mChart.setPinchZoom(true);
+
+        // set an alternative background color
+        // mChart.setBackgroundColor(Color.GRAY);
 
 
-        YAxis leftAxis = chart.getAxisLeft();
+
+
+        XAxis xAxis = mChart.getXAxis();
+//        xAxis.enableGridDashedLine(10f, 10f, 0f);
+        xAxis.setEnabled(false);
+
+
+        YAxis leftAxis = mChart.getAxisLeft();
         leftAxis.removeAllLimitLines(); // reset all limit lines to avoid overlapping lines
-        leftAxis.addLimitLine(ll1);
-        leftAxis.setAxisMaximum(min);
-        leftAxis.setAxisMinimum(max);
+        leftAxis.addLimitLine(ll);
+
+        leftAxis.setAxisMaximum(max);
+        leftAxis.setAxisMinimum(min);
         //leftAxis.setYOffset(20f);
 //        leftAxis.enableGridDashedLine(10f, 10f, 0f);
         leftAxis.setDrawGridLines(false);
         leftAxis.setTextColor(context.getResources().getColor(R.color.colorAccent));
-        leftAxis.setDrawZeroLine(false);
+        leftAxis.setZeroLineColor(Color.TRANSPARENT);
+        leftAxis.setLabelCount(2);
+        leftAxis.setDrawGridLines(false);
+
         leftAxis.setPosition(YAxis.YAxisLabelPosition.INSIDE_CHART);
 
+        leftAxis.setDrawZeroLine(false);
+
+        // limit lines are drawn behind data (and not on top)
         leftAxis.setDrawLimitLinesBehindData(true);
 
-        chart.setDragEnabled(false);
+        mChart.getAxisRight().setEnabled(false);
 
-//        chart.setScaleEnabled(false);
+        //mChart.getViewPortHandler().setMaximumScaleY(2f);
+        //mChart.getViewPortHandler().setMaximumScaleX(2f);
 
-//        setData();
+        mChart.getLegend().setEnabled(false);
 
-        chart.getAxisRight().setEnabled(false);
-        chart.getLegend().setEnabled(false);
-        chart.setDrawBorders(false);
 
-        chart.animateX(2500);
+//        mChart.setVisibleXRange(20);
+//        mChart.setVisibleYRange(20f, AxisDependency.LEFT);
+//        mChart.centerViewTo(20, 50, AxisDependency.LEFT);
+
+        mChart.animateX(2500);
+        mChart.invalidate();
     }
 
     public static LimitLine getLimitLine(Context context, float line , String name) {
