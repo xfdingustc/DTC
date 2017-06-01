@@ -27,6 +27,7 @@
         <activity android:name=".ui.activities.CoolantActivity"/>
         <activity android:name=".ui.activities.SpeedActivity"/>
         <activity android:name=".ui.activities.IssueActiviity"/>
+        <activity android:name=".ui.activities.SettingActivity"/>
     </application>
 
 </manifest>

@@ -6,8 +6,10 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.LimitLine;
@@ -27,6 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import rx.functions.Action1;
 
 /**
@@ -48,6 +51,11 @@ public class SpeedActivity extends BaseActivity {
     @BindView(R.id.speed_chart)
     LineChart chart;
 
+    @OnClick(R.id.setting)
+    public void onSettingClicked() {
+        SettingActivity.launch(this);
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +66,7 @@ public class SpeedActivity extends BaseActivity {
         setContentView(R.layout.activity_speed);
         getToolbar().setNavigationIcon(R.drawable.icon_back);
         getToolbar().setTitleTextColor(getResources().getColor(R.color.selected));
+
         getToolbar().setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

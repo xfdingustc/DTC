@@ -9,8 +9,10 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.LimitLine;
@@ -36,6 +38,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import rx.functions.Action1;
 
 /**
@@ -57,11 +61,19 @@ public class CoolantActivity extends BaseActivity {
     @BindView(R.id.coolant_chart)
     LineChart chart;
 
+
+    @OnClick(R.id.setting)
+    public void onSettingClicked() {
+        SettingActivity.launch(CoolantActivity.this);
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initViews();
     }
+
+
 
     private void initViews() {
         setContentView(R.layout.activity_coolant);
@@ -73,6 +85,7 @@ public class CoolantActivity extends BaseActivity {
                 finish();
             }
         });
+
 
         mObdDataHandler = new ObdDataHandler(new ObdViewHolder() {
             @Override

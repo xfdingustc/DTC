@@ -11,8 +11,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
-        android:title="Coolant History"
-        android:titleTextColor="@color/toolbarTextColor"></Toolbar>
+
+        android:titleTextColor="@color/toolbarTextColor">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="@color/selected"
+                android:text="Speed History"
+                android:textSize="18sp"/>
+
+            <ImageView
+                android:id="@+id/setting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|right"
+                android:layout_marginRight="16dp"
+                android:src="@drawable/icon_set"/>
+        </FrameLayout>
+
+    </Toolbar>
 
 
     <FrameLayout
