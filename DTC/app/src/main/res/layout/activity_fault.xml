@@ -18,9 +18,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:textColor="@color/dtcred"
-            android:textSize="34sp"
+            android:textSize="32sp"
             android:textStyle="bold"
             tools:text="2 issues need to check" />
 
@@ -46,7 +46,7 @@
             android:layout_margin="16dp"
             android:background="@drawable/button_rounded"
             android:text="Clear all code"
-            android:textColor="@android:color/black" />
+            android:textColor="@color/colorPrimary" />
 
     </LinearLayout>
 

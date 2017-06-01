@@ -4,10 +4,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
+import android.widget.Toolbar;
 
 import com.nonda.dtc.R;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by whaley on 2017/5/28.
@@ -15,11 +19,17 @@ import butterknife.ButterKnife;
 
 public class GoodActivity extends Activity {
 
-//    @BindView(R.id.toolbar)
-//    Toolbar toolbar;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
+    @OnClick(R.id.check)
+    public void onBtnCheckClicked() {
+
+    }
 
     public static void launch(Activity activity) {
         Intent intent = new Intent(activity, GoodActivity.class);
+
         activity.startActivity(intent);
     }
 
@@ -33,13 +43,13 @@ public class GoodActivity extends Activity {
         setContentView(R.layout.activity_good);
         ButterKnife.bind(this);
 
-//        toolbar.setTitleTextColor(Color.WHITE);
-//        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
-//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                finish();
-//            }
-//        });
+        toolbar.setTitleTextColor(getResources().getColor(R.color.selected));
+        toolbar.setNavigationIcon(R.drawable.icon_back);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 }

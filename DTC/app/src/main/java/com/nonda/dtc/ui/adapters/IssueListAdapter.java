@@ -10,8 +10,12 @@ import android.widget.TextView;
 import com.nonda.dtc.R;
 import com.nonda.dtc.model.DTCError;
 
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by whaley on 2017/5/28.
@@ -42,6 +46,15 @@ public class IssueListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         IssueListViewHolder viewHolder = (IssueListViewHolder)holder;
         viewHolder.issueName.setText(mError.getErrors().get(position));
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy MMM dd", Locale.US);
+
+        viewHolder.checkTime.setText(dateFormat.format(System.currentTimeMillis()));
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     @Override
@@ -53,6 +66,9 @@ public class IssueListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
         @BindView(R.id.issue_name)
         TextView issueName;
+
+        @BindView(R.id.check_time)
+        TextView checkTime;
 
 
         public IssueListViewHolder(View itemView) {
