@@ -65,8 +65,8 @@ public class CoolantActivity extends BaseActivity {
 
     private void initViews() {
         setContentView(R.layout.activity_coolant);
-        getToolbar().setNavigationIcon(R.drawable.ic_arrow_back);
-        getToolbar().setTitleTextColor(Color.WHITE);
+        getToolbar().setNavigationIcon(R.drawable.icon_back);
+        getToolbar().setTitleTextColor(getResources().getColor(R.color.selected));
         getToolbar().setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

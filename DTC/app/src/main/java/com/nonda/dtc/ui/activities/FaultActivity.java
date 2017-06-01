@@ -94,8 +94,8 @@ public class FaultActivity extends Activity {
                 .content(R.string.reading_fault_info)
                 .show();
 
-        toolbar.setTitleTextColor(Color.WHITE);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        toolbar.setNavigationIcon(R.drawable.icon_back);
+        toolbar.setTitleTextColor(getResources().getColor(R.color.selected));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
