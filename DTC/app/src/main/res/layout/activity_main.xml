@@ -16,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="72dp"
         app:animationDuration="320"
         app:currentPageIndicatorColor="@color/colorAccent"
         app:dotDiameter="8dp"
