@@ -26,6 +26,7 @@
         <activity android:name=".ui.activities.GoodActivity"/>
         <activity android:name=".ui.activities.CoolantActivity"/>
         <activity android:name=".ui.activities.SpeedActivity"/>
+        <activity android:name=".ui.activities.IssueActiviity"/>
     </application>
 
 </manifest>

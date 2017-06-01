@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#080F21"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="32dp"
+        android:paddingLeft="16dp"
+        android:paddingTop="32dp"
+        android:paddingRight="16dp"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/issue_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/TextAppearance.Number"
+            tools:text="P0001"/>
+        
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/selected"
+            android:layout_marginRight="80dp"
+            android:text="Intake Camshaft Position Actuator Solenoid Control Circuit"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/TextAppearance.Number"
+            android:layout_marginTop="16dp"
+            android:text="Activated"/>
+
+        <TextView
+            android:id="@+id/check_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Sun, APR 5, 13:09"
+            android:textColor="@color/selected"
+            android:textSize="16sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorPrimary"
+        android:padding="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/TextAppearance.Number"
+            android:text="Solution"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/selected"
+            android:text="The Camshaft Position(CMP) actuator is attached to each camshaft and is hydraulically operated in order to change the angle of the camshaft relative to Crankshaft Position(CKP)."
+
+            android:textSize="14sp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,5 +1,6 @@
 package com.nonda.dtc.ui.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,7 +9,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.nonda.dtc.R;
+import com.nonda.dtc.app.AppHolder;
 import com.nonda.dtc.model.DTCError;
+import com.nonda.dtc.ui.activities.IssueActiviity;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;
@@ -43,16 +46,16 @@ public class IssueListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         IssueListViewHolder viewHolder = (IssueListViewHolder)holder;
         viewHolder.issueName.setText(mError.getErrors().get(position));
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy MMM dd", Locale.US);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy MMM dd");
 
-        viewHolder.checkTime.setText(dateFormat.format(System.currentTimeMillis()));
+        viewHolder.checkTime.setText(dateFormat.format(AppHolder.getInstance().getLastCheckTime()));
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                IssueActiviity.launch((Activity)mContext, mError.getErrors().get(position));
             }
         });
     }

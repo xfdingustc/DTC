@@ -45,6 +45,8 @@ public class AppHolder extends Application {
         return _instance;
     }
 
+    private long lastCheckTime;
+
     public static Context getContext() {
         return _instance.getApplicationContext();
     }
@@ -206,6 +208,7 @@ public class AppHolder extends Application {
 //            mEventBus.post(ObdData.fromString(notification));
             mObdSubject.onNext(ObdData.fromString(notification));
         } else if (notification.startsWith("#ATDTC$DTC")) {
+            lastCheckTime = System.currentTimeMillis();
             mEventBus.post(DTCError.fromString(notification));
         } else if (notification.startsWith("#ATFCDTC")) {
             mEventBus.post(new FCDTS());
@@ -214,6 +217,10 @@ public class AppHolder extends Application {
 
     public PublishSubject<ObdData> getObd() {
         return mObdSubject;
+    }
+
+    public long getLastCheckTime() {
+        return lastCheckTime;
     }
 
 
