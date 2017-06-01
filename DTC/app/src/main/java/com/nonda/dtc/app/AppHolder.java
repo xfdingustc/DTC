@@ -8,6 +8,7 @@ import android.content.Context;
 import android.util.Log;
 
 
+import com.nonda.dtc.R;
 import com.nonda.dtc.ble.AppBluetoothHelper;
 import com.nonda.dtc.blelib.BleCallback;
 import com.nonda.dtc.blelib.BluetoothHelper;
@@ -27,6 +28,7 @@ import java.util.List;
 import java.util.UUID;
 
 import rx.subjects.PublishSubject;
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 /**
  * Created by whaley on 2017/5/26.
@@ -75,6 +77,11 @@ public class AppHolder extends Application {
                 .init(TAG)
                 .hideThreadInfo()
                 .methodCount(1);
+
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                .setDefaultFontPath("fonts/Roboto-ThinItalic.ttf")
+                .setFontAttrId(R.attr.fontPath)
+                .build());
     }
 
     public void initBleHelper(BluetoothHelper.OnBindListener listener) {

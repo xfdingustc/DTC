@@ -38,7 +38,7 @@ import com.orhanobut.logger.Logger;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements PermissionListener {
+public class MainActivity extends BaseActivity implements PermissionListener {
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final int REQUEST_CODE_OPEN_BLE = 1;
     private static final int REQUEST_CODE_OPEN_GPS = 2;
@@ -63,7 +63,6 @@ public class MainActivity extends AppCompatActivity implements PermissionListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
         initViews();
         scanBleDevice();
     }

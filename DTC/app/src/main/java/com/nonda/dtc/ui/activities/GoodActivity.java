@@ -17,7 +17,7 @@ import butterknife.OnClick;
  * Created by whaley on 2017/5/28.
  */
 
-public class GoodActivity extends Activity {
+public class GoodActivity extends BaseActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;

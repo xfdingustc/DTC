@@ -21,7 +21,7 @@ import butterknife.ButterKnife;
  * Created by whaley on 2017/6/1.
  */
 
-public class IssueActiviity extends Activity {
+public class IssueActiviity extends BaseActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;

@@ -34,7 +34,7 @@ import butterknife.OnClick;
  * Created by whaley on 2017/5/28.
  */
 
-public class FaultActivity extends Activity {
+public class FaultActivity extends BaseActivity {
     private static final String TAG = FaultActivity.class.getSimpleName();
     private AppHolder mAppHolder = AppHolder.getInstance();
 
@@ -83,7 +83,6 @@ public class FaultActivity extends Activity {
 
     private void initViews() {
         setContentView(R.layout.activity_fault);
-        ButterKnife.bind(this);
         AppHolder.getInstance().writeCmd(DTCConsts.ATDTC);
 
         mLoadDialog = new MaterialDialog.Builder(this)
