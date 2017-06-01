@@ -1,311 +1,306 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:orientation="vertical">
 
-    <TextView
-        style="@style/TextAppearance.Normal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="16dp"
-        android:text="History Fuel Consumption" />
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:adjustViewBounds="true"
-        android:src="@drawable/eco_table"
-        tools:visibility="gone"/>
-
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/TextAppearance.Normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="16dp"
+            android:text="History Fuel Consumption" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/eco_table"
+            tools:visibility="gone" />
 
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="horizontal">
+
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_weight="1"
+                android:orientation="vertical">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="8dp"
+                        android:src="@drawable/icon_instant_mpg" />
+
+                    <TextView
+                        style="@style/TextAppearance.Normal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="Instant MPG" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.nonda.dtc.views.NumberAnimTextView
+                        android:id="@+id/instantMpg"
+                        style="@style/TextAppearance.Number.Left"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="30" />
+
+                    <TextView
+                        style="@style/TextAppearance.Normal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|right"
+                        android:layout_marginRight="32dp"
+                        android:text="mph" />
+
+                </LinearLayout>
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="32dp"
-                    android:layout_marginRight="16dp"
-                    android:src="@drawable/icon_instant_mpg" />
+                    style="@style/widget"
+                    android:layout_width="match_parent"
+                    android:src="@drawable/line1" />
 
-                <TextView
-                    style="@style/TextAppearance.Normal"
-                    android:layout_width="wrap_content"
+                <ImageView
+                    style="@style/widget_bottom"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="Instant MPG" />
+                    android:src="@drawable/line3_left" />
 
 
             </LinearLayout>
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
-                <com.nonda.dtc.views.NumberAnimTextView
-                    android:id="@+id/instantMpg"
-                    style="@style/TextAppearance.Number"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="16dp"
-                    tools:text="30" />
-
-                <TextView
-                    style="@style/TextAppearance.Normal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical|right"
-                    android:layout_marginRight="32dp"
-                    android:text="mph" />
-
-            </FrameLayout>
-
-            <ImageView
-                android:layout_width="match_parent"
-                style="@style/widget"
-                android:src="@drawable/line1" />
-
-            <ImageView
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                style="@style/widget_bottom"
-                android:src="@drawable/line3_left" />
+                android:layout_weight="1"
+                android:orientation="vertical">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="8dp"
+                        android:src="@drawable/icon_average_mpg" />
+
+                    <TextView
+                        style="@style/TextAppearance.Normal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="Average MPG" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.nonda.dtc.views.NumberAnimTextView
+                        android:id="@+id/averageMpg"
+                        style="@style/TextAppearance.Number.Left"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="30" />
+
+                    <TextView
+                        style="@style/TextAppearance.Normal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|right"
+                        android:layout_marginRight="32dp"
+                        android:text="mpg" />
+
+                </LinearLayout>
+
+                <ImageView
+                    style="@style/widget"
+                    android:layout_width="match_parent"
+                    android:src="@drawable/line2" />
+
+                <ImageView
+                    style="@style/widget_bottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/line3" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="horizontal">
+
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_weight="1"
+                android:orientation="vertical">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="8dp"
+                        android:src="@drawable/icon_fuel_level" />
+
+                    <TextView
+                        style="@style/TextAppearance.Normal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="Fuel Level" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.nonda.dtc.views.NumberAnimTextView
+                        android:id="@+id/fuleLevel"
+                        style="@style/TextAppearance.Number.Left"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="30" />
+
+                    <TextView
+                        style="@style/TextAppearance.Normal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|right"
+                        android:layout_marginRight="32dp"
+                        android:text="%" />
+
+                </LinearLayout>
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="32dp"
-                    android:layout_marginRight="16dp"
-                    android:src="@drawable/icon_average_mpg" />
+                    style="@style/widget"
+                    android:layout_width="match_parent"
+                    android:src="@drawable/line4" />
 
-                <TextView
-                    style="@style/TextAppearance.Normal"
-                    android:layout_width="wrap_content"
+                <ImageView
+                    style="@style/widget_bottom"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="Average MPG" />
+                    android:src="@drawable/line3_left" />
 
 
             </LinearLayout>
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
-                <com.nonda.dtc.views.NumberAnimTextView
-                    android:id="@+id/averageMpg"
-                    style="@style/TextAppearance.Number"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="16dp"
-                    tools:text="30" />
-
-                <TextView
-                    style="@style/TextAppearance.Normal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical|right"
-                    android:layout_marginRight="32dp"
-                    android:text="mpg" />
-
-            </FrameLayout>
-
-            <ImageView
-                android:layout_width="match_parent"
-                style="@style/widget"
-                android:src="@drawable/line2" />
-
-            <ImageView
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                style="@style/widget_bottom"
-                android:src="@drawable/line3" />
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="8dp"
+                        android:src="@drawable/icon_range" />
+
+                    <TextView
+                        style="@style/TextAppearance.Normal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="Range" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.nonda.dtc.views.NumberAnimTextView
+                        android:id="@+id/range"
+                        style="@style/TextAppearance.Number.Left"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="30" />
+
+                    <TextView
+                        style="@style/TextAppearance.Normal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|right"
+                        android:layout_marginRight="32dp"
+                        android:text="miles" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    style="@style/widget"
+                    android:layout_width="match_parent"
+                    android:src="@drawable/line4" />
+
+                <ImageView
+                    style="@style/widget_bottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/line3" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
     </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginLeft="32dp"
-                    android:src="@drawable/icon_fuel_level" />
-
-                <TextView
-                    style="@style/TextAppearance.Normal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="Fuel Level" />
-
-
-            </LinearLayout>
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.nonda.dtc.views.NumberAnimTextView
-                    android:id="@+id/fuleLevel"
-                    style="@style/TextAppearance.Number"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="16dp"
-                    tools:text="30" />
-
-                <TextView
-                    style="@style/TextAppearance.Normal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical|right"
-                    android:layout_marginRight="32dp"
-                    android:text="%" />
-
-            </FrameLayout>
-
-            <ImageView
-                android:layout_width="match_parent"
-                style="@style/widget"
-                android:src="@drawable/line4" />
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/widget_bottom"
-                android:src="@drawable/line3_left" />
-
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginLeft="32dp"
-                    android:src="@drawable/icon_range" />
-
-                <TextView
-                    style="@style/TextAppearance.Normal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="Range" />
-
-
-
-            </LinearLayout>
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.nonda.dtc.views.NumberAnimTextView
-                    android:id="@+id/range"
-                    style="@style/TextAppearance.Number"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="16dp"
-                    tools:text="30" />
-
-                <TextView
-                    style="@style/TextAppearance.Normal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical|right"
-                    android:layout_marginRight="32dp"
-                    android:text="miles" />
-
-            </FrameLayout>
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="match_parent"
-                style="@style/widget"
-                android:src="@drawable/line4" />
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/widget_bottom"
-                android:src="@drawable/line3" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-
-</LinearLayout>
+</ScrollView>

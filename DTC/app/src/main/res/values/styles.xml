@@ -16,7 +16,17 @@
 
     <style name="TextAppearance.Number" parent="android:TextAppearance">
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">30sp</item>
+        <item name="fontPath">"fonts/din.ttf</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.Number.Left" parent="TextAppearance.Number">
+        <item name="android:layout_gravity">center_vertical|left</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:layout_marginLeft">32dp</item>
+        <item name="android:layout_marginRight">16dp</item>
     </style>
     
     <style name="widget">
