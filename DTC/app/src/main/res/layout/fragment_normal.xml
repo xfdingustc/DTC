@@ -1,33 +1,215 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tl="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:orientation="vertical">
 
-    <TextView
-        style="@style/TextAppearance.Normal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="16dp"
-        android:text="History Fuel Consumption" />
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:adjustViewBounds="true"
-        android:src="@drawable/eco_table"
-        tools:visibility="gone"/>
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:src="@drawable/rev" />
+
+            <com.nonda.dtc.views.NumberAnimTextView
+                android:id="@+id/rmp"
+                style="@style/TextAppearance.Number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                tools:text="10000" />
+
+        </FrameLayout>
+
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:src="@drawable/speed" />
+
+            <com.nonda.dtc.views.NumberAnimTextView
+                android:id="@+id/speed"
+                style="@style/TextAppearance.Number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                tools:text="10000" />
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginRight="16dp"
+                    android:src="@drawable/icon_coolant" />
+
+                <TextView
+                    style="@style/TextAppearance.Normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="Coolant" />
+
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/coolant"
+                    style="@style/TextAppearance.Number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="16dp"
+                    tools:text="30" />
+
+                <TextView
+                    style="@style/TextAppearance.Normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|right"
+                    android:layout_marginRight="32dp"
+                    android:text="F" />
+
+            </FrameLayout>
+
+            <ImageView
+                style="@style/widget"
+                android:layout_width="match_parent"
+                android:src="@drawable/line1" />
+
+            <ImageView
+                style="@style/widget_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/line3_left" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginRight="16dp"
+                    android:src="@drawable/icon_voltage" />
+
+                <TextView
+                    style="@style/TextAppearance.Normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="Voltage" />
+
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/voltage"
+                    style="@style/TextAppearance.Number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="16dp"
+                    tools:text="30" />
+
+                <TextView
+                    style="@style/TextAppearance.Normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|right"
+                    android:layout_marginRight="32dp"
+                    android:text="V" />
+
+            </FrameLayout>
+
+            <ImageView
+                style="@style/widget"
+                android:layout_width="match_parent"
+                android:src="@drawable/line1" />
+
+            <ImageView
+                style="@style/widget_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/line3" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -62,7 +244,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.nonda.dtc.views.NumberAnimTextView
+                <TextView
                     android:id="@+id/instantMpg"
                     style="@style/TextAppearance.Number"
                     android:layout_width="wrap_content"
@@ -82,19 +264,18 @@
             </FrameLayout>
 
             <ImageView
-                android:layout_width="match_parent"
                 style="@style/widget"
+                android:layout_width="match_parent"
                 android:src="@drawable/line1" />
 
             <ImageView
+                style="@style/widget_bottom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/widget_bottom"
                 android:src="@drawable/line3_left" />
 
 
         </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="0dp"
@@ -149,26 +330,27 @@
             </FrameLayout>
 
             <ImageView
-                android:layout_width="match_parent"
                 style="@style/widget"
-                android:src="@drawable/line2" />
+                android:layout_width="match_parent"
+                android:src="@drawable/line1" />
 
             <ImageView
+                style="@style/widget_bottom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/widget_bottom"
                 android:src="@drawable/line3" />
+
 
         </LinearLayout>
 
-    </LinearLayout>
 
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:orientation="horizontal">
-
 
         <LinearLayout
             android:layout_width="0dp"
@@ -185,8 +367,8 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="16dp"
                     android:layout_marginLeft="32dp"
+                    android:layout_marginRight="16dp"
                     android:src="@drawable/icon_fuel_level" />
 
                 <TextView
@@ -203,8 +385,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.nonda.dtc.views.NumberAnimTextView
-                    android:id="@+id/fuleLevel"
+                <TextView
+                    android:id="@+id/fuleLeve"
                     style="@style/TextAppearance.Number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -223,19 +405,18 @@
             </FrameLayout>
 
             <ImageView
-                android:layout_width="match_parent"
                 style="@style/widget"
+                android:layout_width="match_parent"
                 android:src="@drawable/line4" />
 
             <ImageView
+                style="@style/widget_bottom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/widget_bottom"
                 android:src="@drawable/line3_left" />
 
 
         </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="0dp"
@@ -249,12 +430,11 @@
                 android:orientation="horizontal">
 
 
-
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="16dp"
                     android:layout_marginLeft="32dp"
+                    android:layout_marginRight="16dp"
                     android:src="@drawable/icon_range" />
 
                 <TextView
@@ -265,14 +445,13 @@
                     android:text="Range" />
 
 
-
             </LinearLayout>
 
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.nonda.dtc.views.NumberAnimTextView
+                <TextView
                     android:id="@+id/range"
                     style="@style/TextAppearance.Number"
                     android:layout_width="wrap_content"
@@ -292,20 +471,24 @@
             </FrameLayout>
 
             <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="match_parent"
                 style="@style/widget"
+                android:layout_width="match_parent"
                 android:src="@drawable/line4" />
 
             <ImageView
+                style="@style/widget_bottom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/widget_bottom"
                 android:src="@drawable/line3" />
+
 
         </LinearLayout>
 
+
     </LinearLayout>
+
+
+
 
 
 </LinearLayout>

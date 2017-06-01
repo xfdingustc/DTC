@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import com.flyco.tablayout.SegmentTabLayout;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.nonda.dtc.R;
-import com.orhanobut.logger.Logger;
 
 import butterknife.BindView;
 
@@ -20,7 +19,7 @@ import butterknife.BindView;
 
 public class DashboardFragment extends BaseFragment {
     private static final String TAG = DashboardFragment.class.getSimpleName();
-    private String[] mTitles = {"Eco", "Basic", "Pro"};
+    private String[] mTitles = {"Eco", "Normal", "Sport"};
 
     @BindView(R.id.tablayout)
     SegmentTabLayout tabLayout;
@@ -39,13 +38,13 @@ public class DashboardFragment extends BaseFragment {
         tabLayout.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelect(int position) {
-                Fragment fragment = new BasicFragment();
+                Fragment fragment = new NormalFragment();
                 switch (position) {
                     case 0:
                         fragment = new EcoFragment();
                         break;
                     case 1:
-                        fragment = new BasicFragment();
+                        fragment = new NormalFragment();
                         break;
                     case 2:
                         fragment = new ProFragment();
@@ -60,7 +59,7 @@ public class DashboardFragment extends BaseFragment {
             }
         });
         tabLayout.setCurrentTab(1);
-        Fragment fragment = new BasicFragment();
+        Fragment fragment = new NormalFragment();
         getChildFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
     }
 }

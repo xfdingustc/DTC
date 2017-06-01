@@ -18,5 +18,18 @@
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">24sp</item>
     </style>
+    
+    <style name="widget">
+        <item name="android:layout_marginLeft">32dp</item>
+        <item name="android:layout_marginRight">32dp</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:layout_height">32dp</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+    <style name="widget_bottom">
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:layout_marginTop">-16dp</item>
+    </style>
 
 </resources>

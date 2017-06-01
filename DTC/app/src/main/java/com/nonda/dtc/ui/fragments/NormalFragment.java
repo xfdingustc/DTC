@@ -13,22 +13,16 @@ import com.nonda.dtc.model.ObdData;
 import com.nonda.dtc.rx.Transformers;
 import com.nonda.dtc.ui.obd.ObdDataHandler;
 import com.nonda.dtc.ui.obd.ObdViewHolder;
-import com.nonda.dtc.utils.MpgUtils;
 import com.nonda.dtc.views.NumberAnimTextView;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
 import butterknife.BindView;
-import rx.Observable;
 import rx.functions.Action1;
 
 /**
  * Created by whaley on 2017/5/26.
  */
 
-public class BasicFragment extends BaseFragment {
+public class NormalFragment extends BaseFragment {
 
     private ObdDataHandler mObdDataHandler;
 
@@ -60,7 +54,7 @@ public class BasicFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view = createFragmentView(inflater, container, R.layout.fragment_basic, savedInstanceState);
+        View view = createFragmentView(inflater, container, R.layout.fragment_normal, savedInstanceState);
         initViews();
         return view;
     }

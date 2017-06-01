@@ -30,7 +30,6 @@ import com.nonda.dtc.blelib.constant.BleScanState;
 import com.nonda.dtc.blelib.constant.ConnectError;
 import com.nonda.dtc.blelib.utils.HexUtil;
 import com.nonda.dtc.model.BleDevice;
-import com.nonda.dtc.ui.fragments.BasicFragment;
 import com.nonda.dtc.ui.fragments.DashboardFragment;
 import com.nonda.dtc.ui.fragments.DeviceFragment;
 import com.nonda.dtc.views.InkPageIndicator;
