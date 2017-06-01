@@ -43,9 +43,7 @@ public class ObdDataHandler {
         }
 
         if (mViewHolder.getInstantMpg() != null && obdData.instantMpg > 0) {
-
             mViewHolder.getInstantMpg().setText(obdData.getInstantMpg());
-
         }
 
         if (mViewHolder.getAverageMpg() != null) {
