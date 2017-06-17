@@ -30,6 +30,7 @@ import com.nonda.dtc.rx.Transformers;
 import com.nonda.dtc.ui.obd.ObdDataHandler;
 import com.nonda.dtc.ui.obd.ObdViewHolder;
 import com.nonda.dtc.utils.DtcLineCharUtils;
+import com.nonda.dtc.utils.FloatUtils;
 import com.nonda.dtc.utils.TempUtils;
 import com.nonda.dtc.views.NumberAnimTextView;
 import com.orhanobut.logger.Logger;
@@ -153,7 +154,7 @@ public class CoolantActivity extends BaseActivity {
     }
 
     private void setupLineChart() {
-        LimitLine limitLine= DtcLineCharUtils.getLimitLine(this, 187f, "Average Coolart");
+        LimitLine limitLine= DtcLineCharUtils.getLimitLine(this, 187f, "Average Coolant");
         DtcLineCharUtils.setupLineChart(this, chart, 140f, 240f, limitLine);
         updateCoolantData();
     }
@@ -166,9 +167,14 @@ public class CoolantActivity extends BaseActivity {
 
         int interval = 60;
 
+        float coolSum = 0;
+        int count = 0;
+
         for (int i = 0; i < obdDataList.size(); i += interval) {
             ObdData obdData = obdDataList.get(i);
             float val = TempUtils.c2p(obdData.coolant);
+            coolSum += val;
+            count++;
             Log.d(TAG, "x: " + i / interval + " y: " + val);
             values.add(new Entry(i / interval, val));
         }
@@ -176,5 +182,11 @@ public class CoolantActivity extends BaseActivity {
 
 
         DtcLineCharUtils.updateDataSet(this, chart, values);
+        float coolAverage = coolSum / count;
+        LimitLine limitLine = DtcLineCharUtils.getLimitLine(this, coolAverage,
+                "Average Coolant " + FloatUtils.toFloatString(1, coolAverage));
+        YAxis leftAxis = chart.getAxisLeft();
+        leftAxis.removeAllLimitLines(); // reset all limit lines to avoid overlapping lines
+        leftAxis.addLimitLine(limitLine);
     }
 }
