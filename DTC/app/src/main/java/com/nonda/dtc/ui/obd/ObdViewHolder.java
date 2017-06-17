@@ -9,22 +9,46 @@ import com.nonda.dtc.views.NumberAnimTextView;
  * Created by whaley on 2017/5/29.
  */
 
-public interface ObdViewHolder {
-    TextView getVoltage();
+public abstract class ObdViewHolder {
+    public TextView getVoltage() {
+        return null;
+    }
 
-    FuelViewHolder getFuelViewHolder();
+    public FuelViewHolder getFuelViewHolder() {
+        return null;
+    }
 
-    NumberAnimTextView getRpm();
+    public NumberAnimTextView getRpm() {
+        return null;
+    }
 
-    NumberAnimTextView getSpeed();
+    public NumberAnimTextView getSpeed() {
+        return null;
+    }
 
 
-    TextView getCoolant();
+    public TextView getCoolant() {
+        return null;
+    }
 
-    TextView getInstantMpg();
+    public TextView getInstantMpg() {
+        return null;
+    }
 
-    NumberAnimTextView getAverageMpg();
+    public NumberAnimTextView getAverageMpg() {
+        return null;
+    }
 
-    RangeViewHolder getRangeViewHolder();
+    public RangeViewHolder getRangeViewHolder() {
+        return null;
+    }
+
+    public TextView getLoad() {
+        return null;
+    }
+
+    public TextView getThrottle() {
+        return null;
+    }
 
 }

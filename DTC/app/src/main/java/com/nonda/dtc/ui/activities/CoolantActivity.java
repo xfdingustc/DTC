@@ -92,45 +92,9 @@ public class CoolantActivity extends BaseActivity {
 
         mObdDataHandler = new ObdDataHandler(new ObdViewHolder() {
             @Override
-            public TextView getVoltage() {
-                return null;
-            }
-
-            @Override
-            public FuelViewHolder getFuelViewHolder() {
-                return null;
-            }
-
-            @Override
-            public NumberAnimTextView getRpm() {
-                return null;
-            }
-
-            @Override
-            public NumberAnimTextView getSpeed() {
-                return null;
-            }
-
-            @Override
             public TextView getCoolant() {
                 return coolant;
             }
-
-            @Override
-            public TextView getInstantMpg() {
-                return null;
-            }
-
-            @Override
-            public NumberAnimTextView getAverageMpg() {
-                return null;
-            }
-
-            @Override
-            public RangeViewHolder getRangeViewHolder() {
-                return null;
-            }
-
         });
 
         AppHolder.getInstance().getObd()

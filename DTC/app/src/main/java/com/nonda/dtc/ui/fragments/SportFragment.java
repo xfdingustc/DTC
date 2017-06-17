@@ -38,6 +38,12 @@ public class SportFragment extends BaseFragment {
     @BindView(R.id.mph)
     NumberAnimTextView mph;
 
+    @BindView(R.id.load)
+    TextView load;
+
+    @BindView(R.id.throttle)
+    TextView throttle;
+
     @OnClick(R.id.coolant_layout)
     public void onCoolantLayoutClicked() {
         CoolantActivity.launch(getActivity());
@@ -60,20 +66,6 @@ public class SportFragment extends BaseFragment {
 
     private void initViews() {
         mObdDataHandler = new ObdDataHandler(new ObdViewHolder() {
-            @Override
-            public TextView getVoltage() {
-                return null;
-            }
-
-            @Override
-            public FuelViewHolder getFuelViewHolder() {
-                return null;
-            }
-
-            @Override
-            public NumberAnimTextView getRpm() {
-                return null;
-            }
 
             @Override
             public NumberAnimTextView getSpeed() {
@@ -86,20 +78,14 @@ public class SportFragment extends BaseFragment {
             }
 
             @Override
-            public TextView getInstantMpg() {
-                return null;
+            public TextView getLoad() {
+                return load;
             }
 
             @Override
-            public NumberAnimTextView getAverageMpg() {
-                return null;
+            public TextView getThrottle() {
+                return throttle;
             }
-
-            @Override
-            public RangeViewHolder getRangeViewHolder() {
-                return null;
-            }
-
         });
         AppHolder.getInstance().getObd()
                 .compose(this.<ObdData>bindToLifecycle())

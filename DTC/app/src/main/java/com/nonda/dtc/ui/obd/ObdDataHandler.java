@@ -79,6 +79,13 @@ public class ObdDataHandler {
             mViewHolder.getAverageMpg().setNumberString(obdData.getLastAverageMpeg(), obdData.getCurrentAverageMpg());
         }
 
+        if (mViewHolder.getLoad() != null) {
+            mViewHolder.getLoad().setText(obdData.getLoad());
+        }
+
+        if (mViewHolder.getThrottle() != null) {
+            mViewHolder.getThrottle().setText(obdData.getThrottle());
+        }
 
 
 

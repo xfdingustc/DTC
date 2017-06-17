@@ -82,45 +82,9 @@ public class SpeedActivity extends BaseActivity {
 
         mObdDataHandler = new ObdDataHandler(new ObdViewHolder() {
             @Override
-            public TextView getVoltage() {
-                return null;
-            }
-
-            @Override
-            public FuelViewHolder getFuelViewHolder() {
-                return null;
-            }
-
-            @Override
-            public NumberAnimTextView getRpm() {
-                return null;
-            }
-
-            @Override
             public NumberAnimTextView getSpeed() {
                 return speed;
             }
-
-            @Override
-            public TextView getCoolant() {
-                return null;
-            }
-
-            @Override
-            public TextView getInstantMpg() {
-                return null;
-            }
-
-            @Override
-            public NumberAnimTextView getAverageMpg() {
-                return null;
-            }
-
-            @Override
-            public RangeViewHolder getRangeViewHolder() {
-                return null;
-            }
-
         });
 
         AppHolder.getInstance().getObd()

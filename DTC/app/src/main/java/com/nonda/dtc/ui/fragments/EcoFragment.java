@@ -69,10 +69,6 @@ public class EcoFragment extends BaseFragment {
 
     private void initViews() {
         mObdDataHandler = new ObdDataHandler(new ObdViewHolder() {
-            @Override
-            public TextView getVoltage() {
-                return null;
-            }
 
             @Override
             public FuelViewHolder getFuelViewHolder() {
@@ -97,22 +93,6 @@ public class EcoFragment extends BaseFragment {
                         return fuelUnit;
                     }
                 };
-            }
-
-
-            @Override
-            public NumberAnimTextView getRpm() {
-                return null;
-            }
-
-            @Override
-            public NumberAnimTextView getSpeed() {
-                return null;
-            }
-
-            @Override
-            public TextView getCoolant() {
-                return null;
             }
 
             @Override

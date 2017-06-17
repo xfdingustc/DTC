@@ -25,6 +25,8 @@ public class ObdData {
     public float flueLevel = -1.0f;
     public float instantMpg = -1.0f;
     public int error = 0;
+    public float load = -1.0f;
+    public float throttle = -1.0f;
 
     public static float totalKm = 0.0f;
     public static float totalFule = 0.0f;
@@ -53,9 +55,11 @@ public class ObdData {
             } else if (onePayLoad.startsWith("L")) {
                 obdData.flueLevel = Float.valueOf(onePayLoad.substring(1));
             } else if (onePayLoad.startsWith("O")) {
-
+                obdData.load = Float.valueOf(onePayLoad.substring(1));
             } else if (onePayLoad.startsWith("XM")) {
                 obdData.instantMpg = Float.valueOf(onePayLoad.substring(2));
+            } else if (onePayLoad.startsWith("P")) {
+                obdData.throttle = Float.valueOf(onePayLoad.substring(1));
             } else if (onePayLoad.startsWith("D")) {
                 try {
                     obdData.error = Integer.valueOf(onePayLoad.substring(1));
@@ -113,6 +117,14 @@ public class ObdData {
 
     public String getLastAverageMpeg() {
         return MpgUtils.kml2Mpg(lastAverage);
+    }
+
+    public String getLoad() {
+        return FloatUtils.toFloatString(1, load);
+    }
+
+    public String getThrottle() {
+        return FloatUtils.toFloatString(1, throttle);
     }
 
     public String getCurrentAverageMpg() {
