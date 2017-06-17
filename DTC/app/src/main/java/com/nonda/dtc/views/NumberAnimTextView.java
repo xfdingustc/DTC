@@ -4,6 +4,7 @@ import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.TextView;
 
@@ -17,6 +18,8 @@ import java.text.DecimalFormat;
  */
 
 public class NumberAnimTextView extends TextView {
+
+    private final static String TAG = NumberAnimTextView.class.getSimpleName();
 
     private String mNumStart = "0";  // 起始值 默认 0
     private String mNumEnd; // 结束值
@@ -82,25 +85,26 @@ public class NumberAnimTextView extends TextView {
 
         String regexInteger = "-?\\d*";
         isInt = numberEnd.matches(regexInteger) && numberStart.matches(regexInteger);
-        if (isInt) {
-            BigInteger start = new BigInteger(numberStart);
-            BigInteger end = new BigInteger(numberEnd);
-            return end.compareTo(start) >= 0;
-        }
-        String regexDecimal = "-?[1-9]\\d*.\\d*|-?0.\\d*[1-9]\\d*";
-        if ("0".equals(numberStart)) {
-            if (numberEnd.matches(regexDecimal)) {
-                BigDecimal start = new BigDecimal(numberStart);
-                BigDecimal end = new BigDecimal(numberEnd);
-                return end.compareTo(start) > 0;
-            }
-        }
-        if (numberEnd.matches(regexDecimal) && numberStart.matches(regexDecimal)) {
-            BigDecimal start = new BigDecimal(numberStart);
-            BigDecimal end = new BigDecimal(numberEnd);
-            return end.compareTo(start) > 0;
-        }
-        return false;
+        return true;
+//        if (isInt) {
+//            BigInteger start = new BigInteger(numberStart);
+//            BigInteger end = new BigInteger(numberEnd);
+//            return end.compareTo(start) >= 0;
+//        }
+//        String regexDecimal = "-?[1-9]\\d*.\\d*|-?0.\\d*[1-9]\\d*";
+//        if ("0".equals(numberStart)) {
+//            if (numberEnd.matches(regexDecimal)) {
+//                BigDecimal start = new BigDecimal(numberStart);
+//                BigDecimal end = new BigDecimal(numberEnd);
+//                return end.compareTo(start) > 0;
+//            }
+//        }
+//        if (numberEnd.matches(regexDecimal) && numberStart.matches(regexDecimal)) {
+//            BigDecimal start = new BigDecimal(numberStart);
+//            BigDecimal end = new BigDecimal(numberEnd);
+//            return end.compareTo(start) > 0;
+//        }
+//        return false;
     }
 
     private void start() {
