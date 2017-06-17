@@ -13,6 +13,7 @@ import android.widget.Toolbar;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.LimitLine;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.nonda.dtc.R;
 import com.nonda.dtc.app.AppHolder;
@@ -21,6 +22,7 @@ import com.nonda.dtc.rx.Transformers;
 import com.nonda.dtc.ui.obd.ObdDataHandler;
 import com.nonda.dtc.ui.obd.ObdViewHolder;
 import com.nonda.dtc.utils.DtcLineCharUtils;
+import com.nonda.dtc.utils.FloatUtils;
 import com.nonda.dtc.utils.SpeedUtils;
 import com.nonda.dtc.utils.TempUtils;
 import com.nonda.dtc.views.NumberAnimTextView;
@@ -140,10 +142,14 @@ public class SpeedActivity extends BaseActivity {
         List<ObdData> obdDataList = ObdData.getObdDataList();
 
         int interval = 1;
+        float speedSum = 0;
+        int count = 0;
 
         for (int i = 0; i < obdDataList.size(); i += interval) {
             ObdData obdData = obdDataList.get(i);
             float val = SpeedUtils.kmh2Mph(obdData.spd);
+            speedSum += val;
+            count++;
             Log.d(TAG, "x: " + i / interval + " y: " + val);
             values.add(new Entry(i / interval, val));
         }
@@ -151,6 +157,13 @@ public class SpeedActivity extends BaseActivity {
 
 
         DtcLineCharUtils.updateDataSet(this, chart, values);
+        float speedAverage = speedSum / count;
+        LimitLine limitLine = DtcLineCharUtils.getLimitLine(this, speedAverage,
+                "Average Speed " + FloatUtils.toFloatString(1, speedAverage));
+        YAxis leftAxis = chart.getAxisLeft();
+        leftAxis.removeAllLimitLines(); // reset all limit lines to avoid overlapping lines
+        leftAxis.addLimitLine(limitLine);
+
     }
 
     private void setupLineChar() {

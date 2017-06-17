@@ -47,8 +47,6 @@ public class DtcLineCharUtils {
         // mChart.setBackgroundColor(Color.GRAY);
 
 
-
-
         XAxis xAxis = mChart.getXAxis();
 //        xAxis.enableGridDashedLine(10f, 10f, 0f);
         xAxis.setEnabled(false);
@@ -91,7 +89,7 @@ public class DtcLineCharUtils {
         mChart.invalidate();
     }
 
-    public static LimitLine getLimitLine(Context context, float line , String name) {
+    public static LimitLine getLimitLine(Context context, float line, String name) {
         LimitLine ll1 = new LimitLine(line, name);
         ll1.setLineWidth(1f);
         ll1.enableDashedLine(10f, 10f, 0f);
@@ -107,7 +105,7 @@ public class DtcLineCharUtils {
 
         if (chart.getData() != null &&
                 chart.getData().getDataSetCount() > 0) {
-            set1 = (LineDataSet)chart.getData().getDataSetByIndex(0);
+            set1 = (LineDataSet) chart.getData().getDataSetByIndex(0);
             set1.setValues(values);
             chart.getData().notifyDataChanged();
             chart.notifyDataSetChanged();
@@ -133,8 +131,7 @@ public class DtcLineCharUtils {
                 // fill drawable only supported on api level 18 and above
                 Drawable drawable = ContextCompat.getDrawable(context, R.drawable.fade_green);
                 set1.setFillDrawable(drawable);
-            }
-            else {
+            } else {
                 set1.setFillColor(Color.BLACK);
             }
 
