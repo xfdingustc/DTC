@@ -23,6 +23,7 @@ import com.nonda.dtc.rx.Transformers;
 import com.nonda.dtc.ui.obd.FuelViewHolder;
 import com.nonda.dtc.ui.obd.ObdDataHandler;
 import com.nonda.dtc.ui.obd.ObdViewHolder;
+import com.nonda.dtc.ui.obd.RangeViewHolder;
 import com.nonda.dtc.utils.DtcLineCharUtils;
 import com.nonda.dtc.utils.FloatUtils;
 import com.nonda.dtc.utils.SpeedUtils;
@@ -116,9 +117,10 @@ public class SpeedActivity extends BaseActivity {
             }
 
             @Override
-            public TextView getRange() {
+            public RangeViewHolder getRangeViewHolder() {
                 return null;
             }
+
         });
 
         AppHolder.getInstance().getObd()

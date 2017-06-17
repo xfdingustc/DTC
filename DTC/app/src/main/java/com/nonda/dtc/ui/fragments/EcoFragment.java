@@ -15,6 +15,7 @@ import com.nonda.dtc.rx.Transformers;
 import com.nonda.dtc.ui.obd.FuelViewHolder;
 import com.nonda.dtc.ui.obd.ObdDataHandler;
 import com.nonda.dtc.ui.obd.ObdViewHolder;
+import com.nonda.dtc.ui.obd.RangeViewHolder;
 import com.nonda.dtc.views.NumberAnimTextView;
 
 import butterknife.BindView;
@@ -37,9 +38,6 @@ public class EcoFragment extends BaseFragment {
     @BindView(R.id.fuleLevel)
     TextView fuleLevel;
 
-    @BindView(R.id.range)
-    TextView range;
-
     @BindView(R.id.icon_fuel_level)
     ImageView iconFuelLevel;
 
@@ -49,6 +47,17 @@ public class EcoFragment extends BaseFragment {
     @BindView(R.id.fuel_unit)
     TextView fuelUnit;
 
+    @BindView(R.id.range)
+    TextView range;
+
+    @BindView(R.id.icon_range)
+    ImageView iconRange;
+
+    @BindView(R.id.label_range)
+    TextView labelRange;
+
+    @BindView(R.id.range_unit)
+    TextView rangeUnit;
 
     @Nullable
     @Override
@@ -117,9 +126,31 @@ public class EcoFragment extends BaseFragment {
             }
 
             @Override
-            public TextView getRange() {
-                return range;
+            public RangeViewHolder getRangeViewHolder() {
+                return new RangeViewHolder() {
+                    @Override
+                    public TextView getRange() {
+                        return range;
+                    }
+
+                    @Override
+                    public ImageView getRangeIcon() {
+                        return iconRange;
+                    }
+
+                    @Override
+                    public TextView getRangeLabel() {
+                        return labelRange;
+                    }
+
+                    @Override
+                    public TextView getRangeUnit() {
+                        return rangeUnit;
+                    }
+                };
             }
+
+
         });
         AppHolder.getInstance().getObd()
                 .compose(this.<ObdData>bindToLifecycle())

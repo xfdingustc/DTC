@@ -82,4 +82,8 @@
     <string name="no_error">No issue found</string>
     <string name="distance">Distance</string>
     <string name="miles">miles</string>
+    <string name="trip_time">Trip time</string>
+    <string name="second">sec</string>
+    <string name="minute">min</string>
+    <string name="hour">hours</string>
 </resources>

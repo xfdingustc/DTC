@@ -25,6 +25,6 @@ public interface ObdViewHolder {
 
     NumberAnimTextView getAverageMpg();
 
-    TextView getRange();
+    RangeViewHolder getRangeViewHolder();
 
 }

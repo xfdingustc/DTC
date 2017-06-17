@@ -26,13 +26,34 @@ public class ObdDataHandler {
             mViewHolder.getVoltage().setText(String.valueOf(obdData.voltage));
         }
         if (mViewHolder.getFuelViewHolder() != null) {
-            if (false && obdData.flueLevel > 0) {
+            if (obdData.flueLevel > 0) {
                 mViewHolder.getFuelViewHolder().getFuelLevel().setText(String.valueOf((int) obdData.flueLevel));
+                if (mViewHolder.getRangeViewHolder() != null) {
+                    mViewHolder.getRangeViewHolder().getRange().setText(obdData.getRange());
+                }
             } else {
                 mViewHolder.getFuelViewHolder().getFuelLevelIcon().setImageResource(R.drawable.icon_distance);
                 mViewHolder.getFuelViewHolder().getFuelLevelLabel().setText(R.string.distance);
                 mViewHolder.getFuelViewHolder().getFuelLevel().setText(FloatUtils.toFloatString(1, obdData.getTotalDistance()));
                 mViewHolder.getFuelViewHolder().getFuelLevelUnit().setText(R.string.miles);
+
+                RangeViewHolder rangeViewHolder = mViewHolder.getRangeViewHolder();
+                if (rangeViewHolder != null) {
+                    rangeViewHolder.getRangeIcon().setImageResource(R.drawable.icon_trip_time);
+                    rangeViewHolder.getRangeLabel().setText(R.string.trip_time);
+
+                    int connectTime = obdData.getTotalTripTime();
+                    if (connectTime < 60) {
+                        rangeViewHolder.getRange().setText(String.valueOf(connectTime));
+                        rangeViewHolder.getRangeUnit().setText(R.string.second);
+                    } else if (connectTime < 3600) {
+                        rangeViewHolder.getRange().setText(FloatUtils.toFloatString(1, connectTime / 60));
+                        rangeViewHolder.getRangeUnit().setText(R.string.minute);
+                    } else {
+                        rangeViewHolder.getRange().setText(FloatUtils.toFloatString(1, connectTime / 3600));
+                        rangeViewHolder.getRangeUnit().setText(R.string.hour);
+                    }
+                }
             }
         }
 
@@ -58,9 +79,7 @@ public class ObdDataHandler {
             mViewHolder.getAverageMpg().setNumberString(obdData.getLastAverageMpeg(), obdData.getCurrentAverageMpg());
         }
 
-        if (mViewHolder.getRange() != null) {
-            mViewHolder.getRange().setText(obdData.getRange());
-        }
+
 
 
     }

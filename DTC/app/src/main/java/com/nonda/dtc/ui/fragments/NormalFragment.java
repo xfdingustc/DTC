@@ -15,6 +15,7 @@ import com.nonda.dtc.rx.Transformers;
 import com.nonda.dtc.ui.obd.FuelViewHolder;
 import com.nonda.dtc.ui.obd.ObdDataHandler;
 import com.nonda.dtc.ui.obd.ObdViewHolder;
+import com.nonda.dtc.ui.obd.RangeViewHolder;
 import com.nonda.dtc.views.NumberAnimTextView;
 
 import butterknife.BindView;
@@ -49,6 +50,9 @@ public class NormalFragment extends BaseFragment {
     @BindView(R.id.lable_fuel_level)
     TextView labelFuelLevel;
 
+    @BindView(R.id.fuel_unit)
+    TextView fuelUnit;
+
     @BindView(R.id.instantMpg)
     TextView instantMpg;
 
@@ -58,8 +62,14 @@ public class NormalFragment extends BaseFragment {
     @BindView(R.id.range)
     TextView range;
 
-    @BindView(R.id.fuel_unit)
-    TextView fuelUnit;
+    @BindView(R.id.icon_range)
+    ImageView iconRange;
+
+    @BindView(R.id.label_range)
+    TextView labelRange;
+
+    @BindView(R.id.range_unit)
+    TextView rangeUnit;
 
 
 
@@ -130,9 +140,30 @@ public class NormalFragment extends BaseFragment {
             }
 
             @Override
-            public TextView getRange() {
-                return range;
+            public RangeViewHolder getRangeViewHolder() {
+                return new RangeViewHolder() {
+                    @Override
+                    public TextView getRange() {
+                        return range;
+                    }
+
+                    @Override
+                    public ImageView getRangeIcon() {
+                        return iconRange;
+                    }
+
+                    @Override
+                    public TextView getRangeLabel() {
+                        return labelRange;
+                    }
+
+                    @Override
+                    public TextView getRangeUnit() {
+                        return rangeUnit;
+                    }
+                };
             }
+
         });
 
         AppHolder.getInstance().getObd()

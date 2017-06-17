@@ -28,6 +28,7 @@ public class ObdData {
 
     public static float totalKm = 0.0f;
     public static float totalFule = 0.0f;
+    public static int totalTime = 0;
 
 
     public static ObdData fromString(String obd) {
@@ -73,6 +74,9 @@ public class ObdData {
             totalKm += (float) obdData.spd;
             totalFule += obdData.instantMpg * obdData.spd;
         }
+
+        totalTime++;
+
         return obdData;
     }
 
@@ -120,6 +124,10 @@ public class ObdData {
 
     public float getTotalDistance() {
         return SpeedUtils.kmh2Mph(totalKm / 3600);
+    }
+
+    public int getTotalTripTime() {
+        return totalTime;
     }
 
     public String getRange() {
