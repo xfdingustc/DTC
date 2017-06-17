@@ -1,8 +1,8 @@
 package com.nonda.dtc.ui.obd;
 
+import com.nonda.dtc.R;
 import com.nonda.dtc.model.ObdData;
-import com.nonda.dtc.utils.MpgUtils;
-import com.orhanobut.logger.Logger;
+import com.nonda.dtc.utils.FloatUtils;
 
 /**
  * Created by whaley on 2017/5/29.
@@ -17,15 +17,23 @@ public class ObdDataHandler {
         this.mViewHolder = viewHolder;
 
     }
+
     public void handleObdData(ObdData obdData) {
         if (obdData == null) {
             return;
         }
-        if (mViewHolder.getVoltage() != null &&obdData.voltage > 0) {
+        if (mViewHolder.getVoltage() != null && obdData.voltage > 0) {
             mViewHolder.getVoltage().setText(String.valueOf(obdData.voltage));
         }
-        if (mViewHolder.getFuleLevel() != null && obdData.flueLevel > 0) {
-            mViewHolder.getFuleLevel().setText(String.valueOf((int)obdData.flueLevel));
+        if (mViewHolder.getFuelViewHolder() != null) {
+            if (false && obdData.flueLevel > 0) {
+                mViewHolder.getFuelViewHolder().getFuelLevel().setText(String.valueOf((int) obdData.flueLevel));
+            } else {
+                mViewHolder.getFuelViewHolder().getFuelLevelIcon().setImageResource(R.drawable.icon_distance);
+                mViewHolder.getFuelViewHolder().getFuelLevelLabel().setText(R.string.distance);
+                mViewHolder.getFuelViewHolder().getFuelLevel().setText(FloatUtils.toFloatString(1, obdData.getTotalDistance()));
+                mViewHolder.getFuelViewHolder().getFuelLevelUnit().setText(R.string.miles);
+            }
         }
 
         if (mViewHolder.getRpm() != null && obdData.rpm > 0) {

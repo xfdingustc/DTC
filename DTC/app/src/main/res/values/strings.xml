@@ -80,4 +80,6 @@
     <string name="clear_success">Clear success</string>
     <string name="retry">Retry</string>
     <string name="no_error">No issue found</string>
+    <string name="distance">Distance</string>
+    <string name="miles">miles</string>
 </resources>

@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
@@ -19,6 +20,7 @@ import com.nonda.dtc.R;
 import com.nonda.dtc.app.AppHolder;
 import com.nonda.dtc.model.ObdData;
 import com.nonda.dtc.rx.Transformers;
+import com.nonda.dtc.ui.obd.FuelViewHolder;
 import com.nonda.dtc.ui.obd.ObdDataHandler;
 import com.nonda.dtc.ui.obd.ObdViewHolder;
 import com.nonda.dtc.utils.DtcLineCharUtils;
@@ -84,7 +86,7 @@ public class SpeedActivity extends BaseActivity {
             }
 
             @Override
-            public TextView getFuleLevel() {
+            public FuelViewHolder getFuelViewHolder() {
                 return null;
             }
 
@@ -153,7 +155,6 @@ public class SpeedActivity extends BaseActivity {
             Log.d(TAG, "x: " + i / interval + " y: " + val);
             values.add(new Entry(i / interval, val));
         }
-
 
 
         DtcLineCharUtils.updateDataSet(this, chart, values);

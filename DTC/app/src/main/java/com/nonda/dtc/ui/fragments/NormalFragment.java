@@ -5,12 +5,14 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nonda.dtc.R;
 import com.nonda.dtc.app.AppHolder;
 import com.nonda.dtc.model.ObdData;
 import com.nonda.dtc.rx.Transformers;
+import com.nonda.dtc.ui.obd.FuelViewHolder;
 import com.nonda.dtc.ui.obd.ObdDataHandler;
 import com.nonda.dtc.ui.obd.ObdViewHolder;
 import com.nonda.dtc.views.NumberAnimTextView;
@@ -41,6 +43,12 @@ public class NormalFragment extends BaseFragment {
     @BindView(R.id.fuleLeve)
     TextView fuleLevel;
 
+    @BindView(R.id.icon_fuel_level)
+    ImageView iconFuelLeve;
+
+    @BindView(R.id.lable_fuel_level)
+    TextView labelFuelLevel;
+
     @BindView(R.id.instantMpg)
     TextView instantMpg;
 
@@ -49,6 +57,9 @@ public class NormalFragment extends BaseFragment {
 
     @BindView(R.id.range)
     TextView range;
+
+    @BindView(R.id.fuel_unit)
+    TextView fuelUnit;
 
 
 
@@ -67,9 +78,31 @@ public class NormalFragment extends BaseFragment {
             }
 
             @Override
-            public TextView getFuleLevel() {
-                return fuleLevel;
+            public FuelViewHolder getFuelViewHolder() {
+                return new FuelViewHolder() {
+                    @Override
+                    public TextView getFuelLevel() {
+                        return fuleLevel;
+                    }
+
+                    @Override
+                    public ImageView getFuelLevelIcon() {
+                        return iconFuelLeve;
+                    }
+
+                    @Override
+                    public TextView getFuelLevelLabel() {
+                        return labelFuelLevel;
+                    }
+
+                    @Override
+                    public TextView getFuelLevelUnit() {
+                        return fuelUnit;
+                    }
+                };
             }
+
+
 
             @Override
             public NumberAnimTextView getRpm() {

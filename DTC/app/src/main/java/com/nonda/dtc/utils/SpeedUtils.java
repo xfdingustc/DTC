@@ -8,4 +8,6 @@ public class SpeedUtils {
     public static float kmh2Mph(float kmh) {
         return kmh * 0.6213712f;
     }
+
+
 }

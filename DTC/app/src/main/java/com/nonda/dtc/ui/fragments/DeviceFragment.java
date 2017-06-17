@@ -30,7 +30,7 @@ import rx.functions.Action1;
 public class DeviceFragment extends BaseFragment {
     @OnClick(R.id.good_or_fault)
     public void onGoodFaultClicked() {
-        if (false && goodOrFault.getDisplayedChild() == 1) {
+        if (goodOrFault.getDisplayedChild() == 1) {
             FaultActivity.launch(getActivity());
         } else {
             GoodActivity.launch(getActivity());

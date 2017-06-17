@@ -118,6 +118,10 @@ public class ObdData {
         return MpgUtils.kml2Mpg(totalFule / totalKm);
     }
 
+    public float getTotalDistance() {
+        return SpeedUtils.kmh2Mph(totalKm / 3600);
+    }
+
     public String getRange() {
         if (totalKm == 0) {
             return "0";

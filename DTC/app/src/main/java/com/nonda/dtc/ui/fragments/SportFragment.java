@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nonda.dtc.R;
@@ -13,6 +14,7 @@ import com.nonda.dtc.model.ObdData;
 import com.nonda.dtc.rx.Transformers;
 import com.nonda.dtc.ui.activities.CoolantActivity;
 import com.nonda.dtc.ui.activities.SpeedActivity;
+import com.nonda.dtc.ui.obd.FuelViewHolder;
 import com.nonda.dtc.ui.obd.ObdDataHandler;
 import com.nonda.dtc.ui.obd.ObdViewHolder;
 import com.nonda.dtc.views.NumberAnimTextView;
@@ -46,9 +48,6 @@ public class SportFragment extends BaseFragment {
     }
 
 
-
-
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -66,7 +65,7 @@ public class SportFragment extends BaseFragment {
             }
 
             @Override
-            public TextView getFuleLevel() {
+            public FuelViewHolder getFuelViewHolder() {
                 return null;
             }
 

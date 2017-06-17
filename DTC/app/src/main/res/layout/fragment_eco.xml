@@ -184,6 +184,7 @@
 
 
                     <ImageView
+                        android:id="@+id/icon_fuel_level"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="32dp"
@@ -191,6 +192,7 @@
                         android:src="@drawable/icon_fuel_level" />
 
                     <TextView
+                        android:id="@+id/lable_fuel_level"
                         style="@style/TextAppearance.Normal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -212,6 +214,7 @@
                         tools:text="30" />
 
                     <TextView
+                        android:id="@+id/fuel_unit"
                         style="@style/TextAppearance.Normal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -249,6 +252,7 @@
 
 
                     <ImageView
+                        android:id="@+id/icon_range"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="32dp"
@@ -256,6 +260,7 @@
                         android:src="@drawable/icon_range" />
 
                     <TextView
+                        android:id="@+id/label_range"
                         style="@style/TextAppearance.Normal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

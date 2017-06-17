@@ -1,5 +1,6 @@
 package com.nonda.dtc.ui.obd;
 
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nonda.dtc.views.NumberAnimTextView;
@@ -11,7 +12,7 @@ import com.nonda.dtc.views.NumberAnimTextView;
 public interface ObdViewHolder {
     TextView getVoltage();
 
-    TextView getFuleLevel();
+    FuelViewHolder getFuelViewHolder();
 
     NumberAnimTextView getRpm();
 

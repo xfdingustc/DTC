@@ -11,6 +11,7 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
@@ -27,6 +28,7 @@ import com.nonda.dtc.R;
 import com.nonda.dtc.app.AppHolder;
 import com.nonda.dtc.model.ObdData;
 import com.nonda.dtc.rx.Transformers;
+import com.nonda.dtc.ui.obd.FuelViewHolder;
 import com.nonda.dtc.ui.obd.ObdDataHandler;
 import com.nonda.dtc.ui.obd.ObdViewHolder;
 import com.nonda.dtc.utils.DtcLineCharUtils;
@@ -75,7 +77,6 @@ public class CoolantActivity extends BaseActivity {
     }
 
 
-
     private void initViews() {
         setContentView(R.layout.activity_coolant);
         getToolbar().setNavigationIcon(R.drawable.icon_back);
@@ -95,7 +96,7 @@ public class CoolantActivity extends BaseActivity {
             }
 
             @Override
-            public TextView getFuleLevel() {
+            public FuelViewHolder getFuelViewHolder() {
                 return null;
             }
 
@@ -145,7 +146,6 @@ public class CoolantActivity extends BaseActivity {
         setupLineChart();
 
 
-
     }
 
     private void updateCoolantData() {
@@ -154,7 +154,7 @@ public class CoolantActivity extends BaseActivity {
     }
 
     private void setupLineChart() {
-        LimitLine limitLine= DtcLineCharUtils.getLimitLine(this, 187f, "Average Coolant");
+        LimitLine limitLine = DtcLineCharUtils.getLimitLine(this, 187f, "Average Coolant");
         DtcLineCharUtils.setupLineChart(this, chart, 140f, 240f, limitLine);
         updateCoolantData();
     }
@@ -178,7 +178,6 @@ public class CoolantActivity extends BaseActivity {
             Log.d(TAG, "x: " + i / interval + " y: " + val);
             values.add(new Entry(i / interval, val));
         }
-
 
 
         DtcLineCharUtils.updateDataSet(this, chart, values);
