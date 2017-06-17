@@ -28,7 +28,7 @@
         <activity android:name=".ui.activities.SpeedActivity"/>
         <activity android:name=".ui.activities.IssueActiviity"/>
         <activity android:name=".ui.activities.SettingActivity"/>
-        <activity android:name=".ui.activities.ClearDtsErrorActivity"/>
+        <activity android:name=".ui.activities.FlameoutActivity"/>
     </application>
 
 </manifest>

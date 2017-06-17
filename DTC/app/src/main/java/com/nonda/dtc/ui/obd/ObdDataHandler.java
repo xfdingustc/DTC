@@ -76,7 +76,7 @@ public class ObdDataHandler {
         }
 
         if (mViewHolder.getAverageMpg() != null) {
-            mViewHolder.getAverageMpg().setNumberString(obdData.getLastAverageMpeg(), obdData.getCurrentAverageMpg());
+            mViewHolder.getAverageMpg().setNumberString(obdData.getLastAverageMpg(), obdData.getCurrentAverageMpg());
         }
 
         if (mViewHolder.getLoad() != null) {

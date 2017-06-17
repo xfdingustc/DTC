@@ -17,6 +17,7 @@ import com.nonda.dtc.blelib.utils.BleLog;
 import com.nonda.dtc.blelib.utils.BleUtils;
 import com.nonda.dtc.model.DTCError;
 import com.nonda.dtc.model.FCDTS;
+import com.nonda.dtc.model.Flameout;
 import com.nonda.dtc.model.ObdData;
 import com.orhanobut.logger.Logger;
 
@@ -65,6 +66,8 @@ public class AppHolder extends Application {
     private PublishSubject<ObdData> mObdSubject = PublishSubject.create();
 
     private PublishSubject<DTCError> mDtsSubject = PublishSubject.create();
+
+    private PublishSubject<Flameout> mFlameoutSubject = PublishSubject.create();
 
     @Override
     public void onCreate() {
@@ -215,6 +218,8 @@ public class AppHolder extends Application {
             mDtsSubject.onNext(DTCError.fromString(notification));
         } else if (notification.startsWith("#ATFCDTC")) {
             mEventBus.post(new FCDTS());
+        } else if (notification.startsWith("ATPOWEROFF")) {
+            mFlameoutSubject.onNext(Flameout.fromString(notification));
         }
     }
 
@@ -224,6 +229,10 @@ public class AppHolder extends Application {
 
     public PublishSubject<DTCError> getDtsError() {
         return mDtsSubject;
+    }
+
+    public PublishSubject<Flameout> getFlameout() {
+        return mFlameoutSubject;
     }
 
     public long getLastCheckTime() {

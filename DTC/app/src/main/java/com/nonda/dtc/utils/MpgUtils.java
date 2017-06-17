@@ -13,4 +13,8 @@ public class MpgUtils {
         }
 
     }
+
+    public static float l2gallone(float l) {
+        return 0.2199692f * l;
+    }
 }

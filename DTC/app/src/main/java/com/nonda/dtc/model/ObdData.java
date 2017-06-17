@@ -1,5 +1,7 @@
 package com.nonda.dtc.model;
 
+import android.support.annotation.NonNull;
+
 import com.nonda.dtc.utils.FloatUtils;
 import com.nonda.dtc.utils.LimitList;
 import com.nonda.dtc.utils.MpgUtils;
@@ -115,7 +117,8 @@ public class ObdData {
         return MpgUtils.kml2Mpg(instantMpg);
     }
 
-    public String getLastAverageMpeg() {
+    @NonNull
+    public static String getLastAverageMpg() {
         return MpgUtils.kml2Mpg(lastAverage);
     }
 
