@@ -64,6 +64,8 @@ public class AppHolder extends Application {
 
     private PublishSubject<ObdData> mObdSubject = PublishSubject.create();
 
+    private PublishSubject<DTCError> mDtsSubject = PublishSubject.create();
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -92,7 +94,6 @@ public class AppHolder extends Application {
     }
 
 
-
     private BleCallback mBleCallback = new BleCallback() {
         @Override
         public void onFailed(String msg) {
@@ -115,13 +116,7 @@ public class AppHolder extends Application {
 
         @Override
         public void onCharacteristicNotification(UUID uuid, byte[] data) {
-
-
             parse(data);
-
-
-
-
         }
 
         @Override
@@ -178,11 +173,11 @@ public class AppHolder extends Application {
         StringBuffer sb = new StringBuffer();
         sb.append(xml);
         String xmString = "";
-        String xmlUTF8="";
+        String xmlUTF8 = "";
         try {
             xmString = new String(sb.toString().getBytes("UTF-8"));
             xmlUTF8 = URLEncoder.encode(xmString, "UTF-8");
-            System.out.println("utf-8 编码：" + xmlUTF8) ;
+            System.out.println("utf-8 编码：" + xmlUTF8);
         } catch (UnsupportedEncodingException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -207,7 +202,6 @@ public class AppHolder extends Application {
         }
 
 
-
     }
 
     private void postOneNotification(String notification) {
@@ -215,8 +209,10 @@ public class AppHolder extends Application {
 //            mEventBus.post(ObdData.fromString(notification));
             mObdSubject.onNext(ObdData.fromString(notification));
         } else if (notification.startsWith("#ATDTC$DTC")) {
+            Log.d(TAG, "Get Dts Error");
             lastCheckTime = System.currentTimeMillis();
             mEventBus.post(DTCError.fromString(notification));
+            mDtsSubject.onNext(DTCError.fromString(notification));
         } else if (notification.startsWith("#ATFCDTC")) {
             mEventBus.post(new FCDTS());
         }
@@ -224,6 +220,10 @@ public class AppHolder extends Application {
 
     public PublishSubject<ObdData> getObd() {
         return mObdSubject;
+    }
+
+    public PublishSubject<DTCError> getDtsError() {
+        return mDtsSubject;
     }
 
     public long getLastCheckTime() {

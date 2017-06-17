@@ -79,4 +79,5 @@
     <string name="reading_fault_info">Reading issues</string>
     <string name="clear_success">Clear success</string>
     <string name="retry">Retry</string>
+    <string name="no_error">No issue found</string>
 </resources>
