@@ -13,6 +13,7 @@ import com.nonda.dtc.app.AppHolder;
 import com.nonda.dtc.model.ObdData;
 import com.nonda.dtc.rx.Transformers;
 import com.nonda.dtc.ui.activities.RevActivity;
+import com.nonda.dtc.ui.activities.VoltageActivity;
 import com.nonda.dtc.ui.obd.FuelViewHolder;
 import com.nonda.dtc.ui.obd.ObdDataHandler;
 import com.nonda.dtc.ui.obd.ObdViewHolder;
@@ -76,6 +77,11 @@ public class NormalFragment extends BaseFragment {
     @OnClick(R.id.rmp)
     public void onRmpClicked() {
         RevActivity.launch(getActivity());
+    }
+
+    @OnClick(R.id.voltage)
+    public void onVoltageClicked() {
+        VoltageActivity.launch(getActivity());
     }
 
 

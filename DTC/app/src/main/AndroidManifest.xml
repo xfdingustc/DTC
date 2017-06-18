@@ -32,6 +32,7 @@
         <activity android:name=".ui.activities.SettingActivity"/>
         <activity android:name=".ui.activities.FlameoutActivity"/>
         <activity android:name=".ui.activities.RevActivity"/>
+        <activity android:name=".ui.activities.VoltageActivity"/>
     </application>
 
 </manifest>
