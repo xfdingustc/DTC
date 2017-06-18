@@ -153,6 +153,6 @@ public class ObdData {
         float averageMpg = totalFule / totalKm;
         float averageMpgInGallon = 235.2145836f / averageMpg;
 
-        return String.valueOf((int)(15f / averageMpgInGallon));
+        return String.valueOf((int)(15 * averageMpgInGallon));
     }
 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DTC</string>
+    <string name="app_name">ZUS DTC</string>
 
     <string name="ble_unknown">unknown</string>
     <string name="app_ble_status_0">BLE Initialed</string>

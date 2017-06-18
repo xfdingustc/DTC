@@ -120,7 +120,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical|right"
                         android:layout_marginRight="48dp"
-                        android:text="F" />
+                        android:text="℉" />
 
                 </LinearLayout>
 
@@ -260,7 +260,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical|right"
                         android:layout_marginRight="48dp"
-                        android:text="mph" />
+                        android:text="mpg" />
 
                 </LinearLayout>
 
