@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical">
+
+    <Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+
+        android:titleTextColor="@color/toolbarTextColor">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="@color/selected"
+                android:text="Rev History"
+                android:textSize="18sp"/>
+
+
+        </FrameLayout>
+
+    </Toolbar>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:src="@drawable/speed" />
+
+        <com.nonda.dtc.views.NumberAnimTextView
+            android:id="@+id/rev"
+            style="@style/TextAppearance.Number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            tools:text="192" />
+
+
+    </FrameLayout>
+
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/speed_chart"
+        android:layout_width="match_parent"
+        android:layout_height="248dp"
+        android:layout_gravity="bottom" />
+
+
+</LinearLayout>

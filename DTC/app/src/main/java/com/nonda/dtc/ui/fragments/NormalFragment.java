@@ -12,6 +12,7 @@ import com.nonda.dtc.R;
 import com.nonda.dtc.app.AppHolder;
 import com.nonda.dtc.model.ObdData;
 import com.nonda.dtc.rx.Transformers;
+import com.nonda.dtc.ui.activities.RevActivity;
 import com.nonda.dtc.ui.obd.FuelViewHolder;
 import com.nonda.dtc.ui.obd.ObdDataHandler;
 import com.nonda.dtc.ui.obd.ObdViewHolder;
@@ -19,6 +20,7 @@ import com.nonda.dtc.ui.obd.RangeViewHolder;
 import com.nonda.dtc.views.NumberAnimTextView;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import rx.functions.Action1;
 
 /**
@@ -70,6 +72,11 @@ public class NormalFragment extends BaseFragment {
 
     @BindView(R.id.range_unit)
     TextView rangeUnit;
+
+    @OnClick(R.id.rmp)
+    public void onRmpClicked() {
+        RevActivity.launch(getActivity());
+    }
 
 
 

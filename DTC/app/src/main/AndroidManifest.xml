@@ -31,6 +31,7 @@
         <activity android:name=".ui.activities.IssueActiviity"/>
         <activity android:name=".ui.activities.SettingActivity"/>
         <activity android:name=".ui.activities.FlameoutActivity"/>
+        <activity android:name=".ui.activities.RevActivity"/>
     </application>
 
 </manifest>
