@@ -56,10 +56,6 @@ public class SpeedActivity extends BaseActivity {
     @BindView(R.id.speed_chart)
     LineChart chart;
 
-    @OnClick(R.id.setting)
-    public void onSettingClicked() {
-        SettingActivity.launch(this);
-    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

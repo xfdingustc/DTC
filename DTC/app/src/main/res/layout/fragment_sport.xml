@@ -94,13 +94,23 @@
 
                 <TextView
                     android:id="@+id/coolant"
+                    style="@style/TextAppearance.Number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    style="@style/TextAppearance.Number"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="16dp"
+                    android:textSize="24sp"
                     tools:text="300"
 
                     />
+
+                <TextView
+                    style="@style/TextAppearance.Normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|right"
+                    android:layout_marginRight="16dp"
+                    android:text="℉" />
 
             </FrameLayout>
 
@@ -111,10 +121,10 @@
 
                 <com.nonda.dtc.views.NumberAnimTextView
                     android:id="@+id/intake"
+                    style="@style/TextAppearance.Number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    style="@style/TextAppearance.Number"
                     tools:text="30"
 
                     />
@@ -128,13 +138,21 @@
 
                 <com.nonda.dtc.views.NumberAnimTextView
                     android:id="@+id/throttle"
+                    style="@style/TextAppearance.Number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    style="@style/TextAppearance.Number"
-                    tools:text="30"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="16dp"
+                    android:textSize="24sp"
+                    tools:text="30" />
 
-                    />
+                <TextView
+                    style="@style/TextAppearance.Normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|right"
+                    android:layout_marginRight="16dp"
+                    android:text="%" />
 
             </FrameLayout>
 
@@ -145,24 +163,27 @@
 
                 <com.nonda.dtc.views.NumberAnimTextView
                     android:id="@+id/load"
+                    style="@style/TextAppearance.Number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    style="@style/TextAppearance.Number"
-                    tools:text="30"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="16dp"
+                    android:textSize="24sp"
+                    tools:text="30" />
 
-                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|right"
+                    android:layout_marginRight="16dp"
+                    style="@style/TextAppearance.Normal"
+                    android:text="%" />
 
             </FrameLayout>
 
         </LinearLayout>
 
     </FrameLayout>
-
-
-
-
-
 
 
 </LinearLayout>

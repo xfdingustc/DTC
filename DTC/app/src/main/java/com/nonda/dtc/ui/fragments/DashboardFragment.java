@@ -10,8 +10,10 @@ import android.view.ViewGroup;
 import com.flyco.tablayout.SegmentTabLayout;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.nonda.dtc.R;
+import com.nonda.dtc.ui.activities.SettingActivity;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by whaley on 2017/5/29.
@@ -24,6 +26,11 @@ public class DashboardFragment extends BaseFragment {
     @BindView(R.id.tablayout)
     SegmentTabLayout tabLayout;
 
+
+    @OnClick(R.id.setting)
+    public void onSettingClicked() {
+        SettingActivity.launch(getActivity());
+    }
 
     @Nullable
     @Override

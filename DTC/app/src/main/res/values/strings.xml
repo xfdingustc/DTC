@@ -86,4 +86,6 @@
     <string name="second">sec</string>
     <string name="minute">min</string>
     <string name="hour">hours</string>
+    <string name="dumping">dumpping log</string>
+    <string name="dump_finished">Dumpping finished</string>
 </resources>

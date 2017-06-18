@@ -27,13 +27,7 @@
                 android:text="Speed History"
                 android:textSize="18sp"/>
 
-            <ImageView
-                android:id="@+id/setting"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical|right"
-                android:layout_marginRight="16dp"
-                android:src="@drawable/icon_set"/>
+
         </FrameLayout>
 
     </Toolbar>

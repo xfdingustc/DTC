@@ -8,6 +8,7 @@ import com.nonda.dtc.utils.MpgUtils;
 import com.nonda.dtc.utils.SpeedUtils;
 import com.nonda.dtc.utils.TempUtils;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,12 +35,20 @@ public class ObdData {
     public static float totalFule = 0.0f;
     public static int totalTime = 0;
 
+    private long receivedTime = 0L;
+    private long tripTime = 0;
+
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("hh-mm-ss");
+
 
     public static ObdData fromString(String obd) {
         if (!obd.startsWith("BD$")) {
             return null;
         }
         ObdData obdData = new ObdData();
+        obdData.receivedTime = System.currentTimeMillis();
+        obdData.tripTime = totalTime + 1;
+
         String payload = obd.substring(3);
 
         String[] payloadList = payload.split(";");
@@ -101,6 +110,20 @@ public class ObdData {
         return mObdHistory;
     }
 
+    @Override
+    public String toString() {
+        return dateFormat.format(receivedTime) + ","
+                + tripTime + "s,"
+                + spd + "km/h,"
+                + rpm + "rpm,"
+                + coolant + "℃,"
+                + instantMpg + "L/100km,"
+                + load + "%,"
+                + throttle + "%,"
+                + voltage + "V,\n";
+
+    }
+
     public String getRpm() {
         return String.valueOf(rpm);
     }
@@ -153,6 +176,6 @@ public class ObdData {
         float averageMpg = totalFule / totalKm;
         float averageMpgInGallon = 235.2145836f / averageMpg;
 
-        return String.valueOf((int)(15 * averageMpgInGallon));
+        return String.valueOf((int) (15 * averageMpgInGallon));
     }
 }
